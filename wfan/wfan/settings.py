@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'twit',
         'USER': 'ebroot',
         'PASSWORD': 'ebroot!!',
-        'HOST': 'ebdb.cawdnwke4hyc.ap-northeast-1.rds.amazonaws.com',
+        'HOST': 'whichfan.cawdnwke4hyc.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
