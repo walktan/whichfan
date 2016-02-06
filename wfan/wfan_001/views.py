@@ -5,8 +5,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from wfan_001.models import twitChu
-from wfan_001.models import twitYaku
+from wfan_001.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
 import MySQLdb
 from requests_oauthlib import OAuth1Session
 import json
@@ -21,13 +20,23 @@ oath_key_dict = {
 
 def index(request):
     #中日
-    tchu = main('中日')
-    chu = twitChu(twit=tchu)
-    chu.save()
+    tdra = main('ドラゴンズ')
+    dra = twitDra(twit=tdra).save()
     #ヤクルト
-    tyaku = main('ヤクルト')
-    yaku = twitYaku(twit=tyaku)
-    yaku.save()
+    tswa = main('スワローズ')
+    swa = twitSwa(twit=tswa).save()
+    #巨人
+    tgia = main('ジャイアンツ')
+    gia = twitGia(twit=tgia).save()
+    #阪神
+    ttig = main('タイガース')
+    tig = twitTig(twit=ttig).save()
+    #広島
+    tcar = main('カープ')
+    car = twitCar(twit=tcar).save()
+    #横浜
+    tbay = main('ベイスターズ')
+    bay = twitBay(twit=tbay).save()
     return HttpResponse("Hello, world.")
 
 def main(key):
@@ -51,7 +60,7 @@ def tweet_search(search_word, oath_key_dict):
         "q": search_word,
         "lang": "ja",
         "result_type": "recent",
-        "count": "1"
+        "count": "10"
         }
     oath = create_oath_session(oath_key_dict)
     responce = oath.get(url, params = params)
