@@ -19,31 +19,29 @@ oath_key_dict = {
 }
 
 def index(request):
-    #中日
-    tdra = main('ドラゴンズ')
-    dra = twitDra(twit=tdra).save()
-    #ヤクルト
-    tswa = main('スワローズ')
-    swa = twitSwa(twit=tswa).save()
-    #巨人
-    tgia = main('ジャイアンツ')
-    gia = twitGia(twit=tgia).save()
-    #阪神
-    ttig = main('タイガース')
-    tig = twitTig(twit=ttig).save()
-    #広島
-    tcar = main('カープ')
-    car = twitCar(twit=tcar).save()
-    #横浜
-    tbay = main('ベイスターズ')
-    bay = twitBay(twit=tbay).save()
+    insert()
     return HttpResponse("Hello, world.")
 
-def main(key):
-    tweets = tweet_search(key, oath_key_dict)
-    for tweet in tweets["statuses"]:
-        text = tweet[u'text']
-        return text
+def insert():
+    tweetsDra = tweet_search('ドラゴンズ', oath_key_dict)
+    tweetsSwa = tweet_search('スワローズ', oath_key_dict)
+    tweetsGia = tweet_search('ジャイアンツ', oath_key_dict)
+    tweetsTig = tweet_search('タイガース', oath_key_dict)
+    tweetsCar = tweet_search('カープ', oath_key_dict)
+    tweetsBay = tweet_search('ベイスターズ', oath_key_dict)
+    for tDra in tweetsDra["statuses"]:
+        dra = twitDra(twit=tDra[u'text']).save()
+    for tSwa in tweetsSwa["statuses"]:
+        swa = twitSwa(twit=tSwa[u'text']).save()
+    for tGia in tweetsGia["statuses"]:
+        gia = twitGia(twit=tGia[u'text']).save()
+    for tTig in tweetsTig["statuses"]:
+        tig = twitTig(twit=tTig[u'text']).save()
+    for tCar in tweetsCar["statuses"]:
+        car = twitCar(twit=tCar[u'text']).save()
+    for tBay in tweetsBay["statuses"]:
+        bay = twitBay(twit=tBay[u'text']).save()
+    return
 
 def create_oath_session(oath_key_dict):
     oath = OAuth1Session(
