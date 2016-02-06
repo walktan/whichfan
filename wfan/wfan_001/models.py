@@ -5,3 +5,7 @@ from django.db import models
 
 class twitChu(models.Model):
     twit = models.CharField(max_length=300)
+
+
+class twitYaku(models.Model):
+    twit = models.CharField(max_length=300)

@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from wfan_001.models import twitChu
+from wfan_001.models import twitYaku
 import MySQLdb
 from requests_oauthlib import OAuth1Session
 import json
@@ -19,13 +20,18 @@ oath_key_dict = {
 }
 
 def index(request):
-    twi = main()
-    p = twitChu(twit=twi)
-    p.save()
+    #中日
+    tchu = main('中日')
+    chu = twitChu(twit=tchu)
+    chu.save()
+    #ヤクルト
+    tyaku = main('ヤクルト')
+    yaku = twitYaku(twit=tyaku)
+    yaku.save()
     return HttpResponse("Hello, world.")
 
-def main():
-    tweets = tweet_search('清原', oath_key_dict)
+def main(key):
+    tweets = tweet_search(key, oath_key_dict)
     for tweet in tweets["statuses"]:
         text = tweet[u'text']
         return text
@@ -42,7 +48,7 @@ def create_oath_session(oath_key_dict):
 def tweet_search(search_word, oath_key_dict):
     url = "https://api.twitter.com/1.1/search/tweets.json?"
     params = {
-        "q": 'dragons',
+        "q": search_word,
         "lang": "ja",
         "result_type": "recent",
         "count": "1"
