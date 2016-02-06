@@ -6,9 +6,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from wfan_001.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
-import MySQLdb
 from requests_oauthlib import OAuth1Session
-import json
+import json,datetime
 
 ### Constants
 oath_key_dict = {
@@ -29,19 +28,50 @@ def insert():
     tweetsTig = tweet_search('タイガース', oath_key_dict)
     tweetsCar = tweet_search('カープ', oath_key_dict)
     tweetsBay = tweet_search('ベイスターズ', oath_key_dict)
-    for tDra in tweetsDra["statuses"]:
-        dra = twitDra(twit=tDra[u'text']).save()
-    for tSwa in tweetsSwa["statuses"]:
-        swa = twitSwa(twit=tSwa[u'text']).save()
-    for tGia in tweetsGia["statuses"]:
-        gia = twitGia(twit=tGia[u'text']).save()
-    for tTig in tweetsTig["statuses"]:
-        tig = twitTig(twit=tTig[u'text']).save()
-    for tCar in tweetsCar["statuses"]:
-        car = twitCar(twit=tCar[u'text']).save()
-    for tBay in tweetsBay["statuses"]:
-        bay = twitBay(twit=tBay[u'text']).save()
+    for tweet in tweetsDra["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitDra(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
+    for tweet in tweetsSwa["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitSwa(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
+    for tweet in tweetsGia["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitGia(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
+    for tweet in tweetsTig["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitTig(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
+    for tweet in tweetsCar["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitCar(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
+    for tweet in tweetsBay["statuses"]:
+        #日本時間表示に変換
+        t_list = tweet[u'created_at'].split(" ")
+        t_cut = " ".join(t_list[:4] + t_list[5:])
+        dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
+        dt += datetime.timedelta(hours=18)
+        p = twitBay(twit_user_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=dt.strftime("%Y-%m-%d %H:%M:%S")).save()
     return
+
 
 def create_oath_session(oath_key_dict):
     oath = OAuth1Session(
@@ -62,8 +92,5 @@ def tweet_search(search_word, oath_key_dict):
         }
     oath = create_oath_session(oath_key_dict)
     responce = oath.get(url, params = params)
-    if responce.status_code != 200:
-   #     print "Error code: %d" %(responce.status_code)
-        return None
     tweets = json.loads(responce.text)
     return tweets
