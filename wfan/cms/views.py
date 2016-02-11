@@ -1,14 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
-from django.template import RequestContext
-from wfan_001.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
+from cms.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
 from requests_oauthlib import OAuth1Session
 import json,datetime
 from django.db.models import Max
+from django.shortcuts import render
+from django.http import HttpResponse,Http404
 
 ### Constants
 oath_key_dict = {
@@ -19,9 +18,25 @@ oath_key_dict = {
 }
 
 def index(request):
-    insert()
-    return HttpResponse("Hello, world.")
+    #insert()
+    d = {
+        'messages': twitDra.objects.all(),
+    }
+    return render(request, 'cms/index.html', d,)
 
+def graph(request):
+    return render(request, 'cms/graph.html',)
+
+def for_ajax(req):    # AJAXに答える関数
+    import json
+    from django.http import HttpResponse,Http404
+
+    if req.method == 'POST':
+        response = json.dumps({'your_surprise_txt':'aiueo',})
+        return HttpResponse(response,content_type="text/javascript")
+
+    else:
+        raise Http404  # GETリクエストを404扱いにしているが、実際は別にしなくてもいいかも
 def insert():
     id_Dra = twitDra.objects.aggregate(max=Max('twit_id'))
     tweetsDra = tweet_search('ドラゴンズ -rt -bot',id_Dra["max"], oath_key_dict)

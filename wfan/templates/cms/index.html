@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body{
+    width:1060px;
+    margin:50px auto;
+}
+path {  stroke: #fff; }
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {  display: none; }
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+
+</style>
+<body>
+    <form id="surprise_fm" action="surprise/" method="post">
+        <input id="surprise_btn" type="submit">
+    </form>
+
+<div id='result_graph'>
+</div>
+<script src="http://d3js.org/d3.v3.min.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+console.log("ページ読み込んだんちゃう？")
+$(document).ready(function(){
+   console.log("jsはじまったんちゃう？")
+   $('#surprise_fm').submit(function() {  // ボタンクリックでAJAX
+   $.ajaxSetup({async: false});//同期通信(json取ってくるまで待つ)
+      $.ajax({
+         'url':$('form#surprise_fm').attr('action'),
+         'type':'POST',
+         'data':{
+            'your_txt':$('#your_txt').val(),
+          },
+         'dataType':'json',
+         'success':function(response){  // 通信が成功したら動く処理で、引数には返ってきたレスポンスが入る
+            freqData = response.your_surprise_txt
+                 console.log('SUCCESS!');
+             },
+            'complete': function(jqXHR, statusText){
+                 console.log('COMPLETE!');
+                 $('#result_graph').load('graph');
+            },
+        });
+        $.ajaxSetup({async: true});
+        console.log("ページ遷移する？")
+        return false;
+    });
+
+});
+
+//CSRF対策
+jQuery(document).ajaxSend(function(event, xhr, settings) {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+});
+</script>

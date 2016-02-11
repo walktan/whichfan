@@ -19,6 +19,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^wfan_001/', include('wfan_001.urls')),
+    url(r'^cms/', include('cms.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
