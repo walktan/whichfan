@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from cms.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
 from requests_oauthlib import OAuth1Session
 import json,datetime
-from django.db.models import Max
+from django.db.models import Max,Min
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 
@@ -18,13 +18,14 @@ oath_key_dict = {
 }
 
 def index(request):
-    #insert()
+    insert()
     d = {
         'messages': twitDra.objects.all(),
     }
-    return render(request, 'cms/index.html', d,)
+    return render(request, 'cms/index.html',)
 
 def graph(request):
+    print ("qwerrtyuiojfidsfkfnkfkrkfjeirjifwefiwehifgweifhewigihrgiherighriwhgier")
     return render(request, 'cms/graph.html',)
 
 def for_ajax(req):    # AJAXに答える関数
@@ -32,24 +33,25 @@ def for_ajax(req):    # AJAXに答える関数
     from django.http import HttpResponse,Http404
 
     if req.method == 'POST':
-        response = json.dumps({'your_surprise_txt':'aiueo',})
+        response = json.dumps([{'State':'2/1','freq':{'Dra':4786,'Swa':1319,'Gia':249,'Tig':5431,'Car':313,'Bay':454}}
+                              ,{'State':'2/2','freq':{'Dra':4786,'Swa':1319,'Gia':249,'Tig':5431,'Car':313,'Bay':454}}])
         return HttpResponse(response,content_type="text/javascript")
 
     else:
         raise Http404  # GETリクエストを404扱いにしているが、実際は別にしなくてもいいかも
 def insert():
-    id_Dra = twitDra.objects.aggregate(max=Max('twit_id'))
-    tweetsDra = tweet_search('ドラゴンズ -rt -bot',id_Dra["max"], oath_key_dict)
-    id_Swa = twitSwa.objects.aggregate(max=Max('twit_id'))
-    tweetsSwa = tweet_search('スワローズ -rt -bot',id_Swa["max"], oath_key_dict)
-    id_Gia = twitGia.objects.aggregate(max=Max('twit_id'))
-    tweetsGia = tweet_search('ジャイアンツ -rt -bot',id_Gia["max"], oath_key_dict)
-    id_Tig = twitTig.objects.aggregate(max=Max('twit_id'))
-    tweetsTig = tweet_search('タイガース -rt -bot',id_Tig["max"], oath_key_dict)
-    id_Car = twitCar.objects.aggregate(max=Max('twit_id'))
-    tweetsCar = tweet_search('カープ -rt -bot',id_Car["max"], oath_key_dict)
-    id_Bay = twitBay.objects.aggregate(max=Max('twit_id'))
-    tweetsBay = tweet_search('ベイスターズ -rt -bot',id_Bay["max"], oath_key_dict)
+    id_Dra = twitDra.objects.aggregate(max=Min('twit_id'))
+    tweetsDra = tweet_search('中日ドラゴンズ -rt -bot',id_Dra["max"], oath_key_dict)
+    id_Swa = twitSwa.objects.aggregate(max=Min('twit_id'))
+    tweetsSwa = tweet_search('ヤクルトスワローズ -rt -bot',id_Swa["max"], oath_key_dict)
+    id_Gia = twitGia.objects.aggregate(max=Min('twit_id'))
+    tweetsGia = tweet_search('読売ジャイアンツ -rt -bot',id_Gia["max"], oath_key_dict)
+    id_Tig = twitTig.objects.aggregate(max=Min('twit_id'))
+    tweetsTig = tweet_search('阪神タイガース -rt -bot',id_Tig["max"], oath_key_dict)
+    id_Car = twitCar.objects.aggregate(max=Min('twit_id'))
+    tweetsCar = tweet_search('広島カープ -rt -bot',id_Car["max"], oath_key_dict)
+    id_Bay = twitBay.objects.aggregate(max=Min('twit_id'))
+    tweetsBay = tweet_search('横浜ベイスターズ -rt -bot',id_Bay["max"], oath_key_dict)
     for tweet in tweetsDra["statuses"]:
         twit_at = change_ja_time(tweet[u'created_at'])
         p = twitDra(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
@@ -86,8 +88,8 @@ def tweet_search(search_word,max_id,oath_key_dict):
         "q": search_word,
         "lang": "ja",
         "result_type": "recent",
-        "count": "10",
-        "since_id": max_id
+        "count": "100",
+        "max_id": max_id
         }
     oath = create_oath_session(oath_key_dict)
     responce = oath.get(url, params = params)

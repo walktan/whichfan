@@ -5,4 +5,5 @@ urlpatterns = patterns('',
     url(r'^$', 'cms.views.index'),
     url(r'^surprise/', 'cms.views.for_ajax'),
     url(r'^graph/', 'cms.views.graph'),
+    url(r'^json/', 'cms.views.json'),
 )
