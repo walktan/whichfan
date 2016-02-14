@@ -280,10 +280,9 @@ $.ajax({
             freqData = response
                  console.log('SUCCESS!さいしょ');
                  freqData = response
-                 dashboard('#dashboard',freqData);
              },
             'complete': function(jqXHR, statusText){
-                 console.log('COMPLETE!さいしょ');
+            dashboard('#dashboard',freqData);
             },
         });
         return false;
@@ -302,7 +301,8 @@ $(document).ready(function(){
          'url':$('form#surprise_fm').attr('action'),
          'type':'POST',
          'data':{
-            'your_txt':$('#your_txt').val(),
+            'from_time':$('#from_time').val(),
+            'to_time':$('#to_time').val(),
           },
          'dataType':'json',
          'success':function(response){  // 通信が成功したら動く処理で、引数には返ってきたレスポンスが入る
