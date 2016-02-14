@@ -8,6 +8,9 @@ import json,datetime
 from django.db.models import Max,Min
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
+from django.core import serializers
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 ### Constants
 oath_key_dict = {
@@ -18,7 +21,7 @@ oath_key_dict = {
 }
 
 def index(request):
-    insert()
+    #insert()
     d = {
         'messages': twitDra.objects.all(),
     }
@@ -33,7 +36,28 @@ def for_ajax(req):    # AJAXに答える関数
     from django.http import HttpResponse,Http404
 
     if req.method == 'POST':
-        response = json.dumps([{'State':'2/1','freq':{'Dra':4786,'Swa':1319,'Gia':249,'Tig':5431,'Car':313,'Bay':454}}
+
+        #DBからデータ取得
+        #data = json.dumps([{'State':'2/1','frep':{'Dra':twitDra.objects.filter(twit_id="697786282357882880")}}])
+
+        start_date = datetime.date(2016, 2, 6)
+        end_date = datetime.date(2016, 2, 7)
+        countDra = twitDra.objects.filter(twit_at__range=(start_date, end_date)).count()
+        countSwa = twitSwa.objects.filter(twit_at__range=(start_date, end_date)).count()
+        countGia = twitGia.objects.filter(twit_at__range=(start_date, end_date)).count()
+        countTig = twitTig.objects.filter(twit_at__range=(start_date, end_date)).count()
+        countCar = twitCar.objects.filter(twit_at__range=(start_date, end_date)).count()
+        countBay = twitBay.objects.filter(twit_at__range=(start_date, end_date)).count()
+        #jdata = serializers.serialize('json', data, ensure_ascii=False)
+        print (countDra)
+        print (countSwa)
+        print (countGia)
+        print (countTig)
+        print (countCar)
+        print (countBay)
+
+
+        response = json.dumps([{'State':'2/1','freq':{'Dra':countDra,'Swa':countSwa,'Gia':countGia,'Tig':countTig,'Car':countCar,'Bay':countBay}}
                               ,{'State':'2/2','freq':{'Dra':4786,'Swa':1319,'Gia':249,'Tig':5431,'Car':313,'Bay':454}}])
         return HttpResponse(response,content_type="text/javascript")
 

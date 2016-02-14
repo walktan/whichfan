@@ -38,14 +38,24 @@ rect:hover {  fill:blue; }
 </style>
 <body>
     <form id="surprise_fm" action="surprise/" method="post">{% csrf_token %}
+        <input type="text" value="" id="from_time"/>
+        <input type="text" value="" id="to_time"/>
         <input id="surprise_btn" type="submit">
     </form>
 
 <div id='dashboard'>
 </div>
-<script src="http://d3js.org/d3.v3.min.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
+    <script src="{{ STATIC_URL }}js/jquery-1.12.0.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+    <script src="{{ STATIC_URL }}js/d3.min.js"></script>
+    <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
+
+    $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d',});
+    $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d',});
+
 function dashboard(id, fData){
     var barColor = 'steelblue';
     function segColor(c){ return {Swa:"#44487e", Gia:"#ff8e11", Dra:"#1135a9", Car:"#ff1111", Bay:"#275bc1" ,Tig:"#eeee11"}[c]; }
@@ -259,22 +269,34 @@ var freqData=[{State:'2/1',freq:{Dra:4786, Swa:1319, Gia:249,Tig:5431, Car:313, 
 ,{State:'2/11',freq:{Dra:162, Swa:379, Gia:471,Tig:1200, Car:345, Bay:249}}
 ];
 
-   dashboard('#dashboard',freqData);
+
+
+$(document).ready(function(){
+$.ajax({
+         'url':'surprise/',
+         'type':'POST',
+         'dataType':'json',
+         'success':function(response){  // 通信が成功したら動く処理で、引数には返ってきたレスポンスが入る
+            freqData = response
+                 console.log('SUCCESS!さいしょ');
+                 freqData = response
+                 dashboard('#dashboard',freqData);
+             },
+            'complete': function(jqXHR, statusText){
+                 console.log('COMPLETE!さいしょ');
+            },
+        });
+        return false;
+});
+
 
 </script>
-
-    <script>
-        function deletelink( deleteid ){
-        var dom_obj_parent = $(deleteid).parentNode;
-        dom_obj_parent.removeChild( $(deleteid) );
-        }
-    </script>
-
 
     <script>
 console.log("ページ読み込んだんちゃう？")
 $(document).ready(function(){
    console.log("jsはじまったんちゃう？")
+
    $('#surprise_fm').submit(function() {  // ボタンクリックでAJAX
       $.ajax({
          'url':$('form#surprise_fm').attr('action'),
