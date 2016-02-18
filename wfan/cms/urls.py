@@ -4,7 +4,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
     url(r'^$', 'cms.views.index'),
-    url(r'^surprise/', 'cms.views.for_ajax'),
+    url(r'^surprise/', 'cms.views.for_dayly'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

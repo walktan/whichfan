@@ -32,3 +32,40 @@ class twitBay(models.Model):
     twit_id = models.DecimalField(max_digits=30, decimal_places=0)
     twit = models.CharField(max_length=300)
     twit_at = models.DateTimeField()
+
+
+
+
+
+
+
+
+class twiDra(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()
+
+class twiSwa(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()
+
+class twiGia(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()
+
+class twiTig(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()
+
+class twiCar(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()
+
+class twiBay(models.Model):
+    twit_id = models.DecimalField(max_digits=30, decimal_places=0)
+    twit = models.CharField(max_length=300)
+    twit_at = models.DateTimeField()

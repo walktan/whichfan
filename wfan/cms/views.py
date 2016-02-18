@@ -3,14 +3,18 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponseRedirect, HttpResponse
 from cms.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
+from cms.models import twiDra,twiSwa,twiGia,twiTig,twiCar,twiBay
 from requests_oauthlib import OAuth1Session
-import json,datetime
+import json
+from datetime import datetime,timedelta
 from django.db.models import Max,Min
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 from django.core import serializers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from collections import OrderedDict
+import datetime
 
 ### Constants
 oath_key_dict = {
@@ -21,48 +25,85 @@ oath_key_dict = {
 }
 
 def index(request):
-    #insert()
-    d = {
-        'messages': twitDra.objects.all(),
-    }
+    newinsert()
     return render(request, 'cms/index.html',)
 
 def graph(request):
     print ("qwerrtyuiojfidsfkfnkfkrkfjeirjifwefiwehifgweifhewigihrgiherighriwhgier")
     return render(request, 'cms/graph.html',)
 
-def for_ajax(req):    # AJAXに答える関数
+def for_hourly(req):    # AJAXに答える関数
     import json
     from django.http import HttpResponse,Http404
 
     if req.method == 'POST':
+        get_from_time = req.POST['from_time']
+        get_to_time = req.POST['to_time']
+        from_time = datetime.strptime(get_from_time, '%Y/%m/%d %H:%M')
+        to_time = datetime.strptime(get_to_time, '%Y/%m/%d %H:%M')
 
-        #DBからデータ取得
-        #data = json.dumps([{'State':'2/1','frep':{'Dra':twitDra.objects.filter(twit_id="697786282357882880")}}])
+        print(from_time)
+        print(to_time)
+        diff_time = int((to_time - from_time).total_seconds() / 3600)
+        print(diff_time)
 
-        start_date = datetime.date(2016, 2, 6)
-        end_date = datetime.date(2016, 2, 7)
-        countDra = twitDra.objects.filter(twit_at__range=(start_date, end_date)).count()
-        countSwa = twitSwa.objects.filter(twit_at__range=(start_date, end_date)).count()
-        countGia = twitGia.objects.filter(twit_at__range=(start_date, end_date)).count()
-        countTig = twitTig.objects.filter(twit_at__range=(start_date, end_date)).count()
-        countCar = twitCar.objects.filter(twit_at__range=(start_date, end_date)).count()
-        countBay = twitBay.objects.filter(twit_at__range=(start_date, end_date)).count()
-        #jdata = serializers.serialize('json', data, ensure_ascii=False)
-        print (countDra)
-        print (countSwa)
-        print (countGia)
-        print (countTig)
-        print (countCar)
-        print (countBay)
+        link_time = []
 
+        for var in range(0,diff_time+1):
+            countDra = twitDra.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countSwa = twitSwa.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countGia = twitGia.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countall = (('Swa',countSwa),('Gia',countGia),('Dra',countDra),('Car',countCar),('Bay',countBay),('Tig',countTig))
+            sort_countall = OrderedDict(countall)
+            link_time.append({'State':from_time.strftime('%m/%d %H'),'freq':sort_countall})
+            from_time += timedelta(hours=1)
 
-        response = json.dumps([{'State':'2/1','freq':{'Dra':countDra,'Swa':countSwa,'Gia':countGia,'Tig':countTig,'Car':countCar,'Bay':countBay}}
-                              ,{'State':'2/2','freq':{'Dra':4786,'Swa':1319,'Gia':249,'Tig':5431,'Car':313,'Bay':454}}])
+        print(json.dumps(link_time))
+        response = json.dumps(link_time)
         return HttpResponse(response,content_type="text/javascript")
 
     else:
-        raise Http404  # GETリクエストを404扱いにしているが、実際は別にしなくてもいいかも
+        raise Http404
+
+def for_dayly(req):    # AJAXに答える関数
+    import json
+    from django.http import HttpResponse,Http404
+
+    if req.method == 'POST':
+        get_from_time = req.POST['from_time']
+        get_to_time = req.POST['to_time']
+        from_time = datetime.strptime(get_from_time, '%Y/%m/%d %H:%M')
+        to_time = datetime.strptime(get_to_time, '%Y/%m/%d %H:%M')
+
+        print(from_time)
+        print(to_time)
+        diff_time = int((to_time - from_time).total_seconds() / (3600 * 24))
+        print(diff_time)
+
+        link_time = []
+
+        for var in range(0,diff_time+1):
+            countDra = twitDra.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countSwa = twitSwa.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countGia = twitGia.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+            countall = (('Swa',countSwa),('Gia',countGia),('Dra',countDra),('Car',countCar),('Bay',countBay),('Tig',countTig))
+            sort_countall = OrderedDict(countall)
+            link_time.append({'State':from_time.strftime('%m/%d'),'freq':sort_countall})
+            from_time += timedelta(days=1)
+
+        print(json.dumps(link_time))
+        response = json.dumps(link_time)
+        return HttpResponse(response,content_type="text/javascript")
+
+    else:
+        raise Http404
+
 def insert():
     id_Dra = twitDra.objects.aggregate(max=Min('twit_id'))
     tweetsDra = tweet_search('中日ドラゴンズ -rt -bot',id_Dra["max"], oath_key_dict)
@@ -96,6 +137,40 @@ def insert():
         p = twitBay(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
     return
 
+def newinsert():
+    id_Dra = twiDra.objects.aggregate(max=Min('twit_id'))
+    tweetsDra = tweet_search('ドラゴンズ -rt -bot',id_Dra["max"], oath_key_dict)
+    id_Swa = twiSwa.objects.aggregate(max=Min('twit_id'))
+    tweetsSwa = tweet_search('スワローズ -rt -bot',id_Swa["max"], oath_key_dict)
+    id_Gia = twiGia.objects.aggregate(max=Min('twit_id'))
+    tweetsGia = tweet_search('ジャイアンツ -rt -bot',id_Gia["max"], oath_key_dict)
+    id_Tig = twiTig.objects.aggregate(max=Min('twit_id'))
+    tweetsTig = tweet_search('タイガース -rt -bot',id_Tig["max"], oath_key_dict)
+    id_Car = twiCar.objects.aggregate(max=Min('twit_id'))
+    tweetsCar = tweet_search('カープ -rt -bot',id_Car["max"], oath_key_dict)
+    id_Bay = twiBay.objects.aggregate(max=Min('twit_id'))
+    tweetsBay = tweet_search('ベイスターズ -rt -bot',id_Bay["max"], oath_key_dict)
+    for tweet in tweetsDra["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiDra(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    for tweet in tweetsSwa["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiSwa(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    for tweet in tweetsGia["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiGia(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    for tweet in tweetsTig["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiTig(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    for tweet in tweetsCar["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiCar(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    for tweet in tweetsBay["statuses"]:
+        twit_at = change_ja_time(tweet[u'created_at'])
+        p = twiBay(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
+    return
+
+
 
 def create_oath_session(oath_key_dict):
     oath = OAuth1Session(
@@ -112,7 +187,7 @@ def tweet_search(search_word,max_id,oath_key_dict):
         "q": search_word,
         "lang": "ja",
         "result_type": "recent",
-        "count": "100",
+        "count": "5",
         "max_id": max_id
         }
     oath = create_oath_session(oath_key_dict)
@@ -124,6 +199,6 @@ def change_ja_time(time):
     t_list = time.split(" ")
     t_cut = " ".join(t_list[:4] + t_list[5:])
     dt = datetime.datetime.strptime(t_cut, "%a %b %d %H:%M:%S %Y")
-    dt += datetime.timedelta(hours=18)
+    dt += datetime.timedelta(hours=9)
     twit_at = dt.strftime("%Y-%m-%d %H:%M:%S")
     return twit_at

@@ -2,16 +2,16 @@
 <meta charset="utf-8">
 <style>
 body{
-    width:1060px;
+    width:800px;
     margin:50px auto;
 }
+
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
 rect:hover {  fill:blue; }
 .axis {  font: 10px sans-serif; }
 .legend tr{    border-bottom:1px solid grey; }
-.legend tr:first-child{    border-top:1px solid grey; }
-
+.legend tr:first-child{    border-top:1px solid grey;}
 .axis path,
 .axis line {
   fill: none;
@@ -21,7 +21,7 @@ rect:hover {  fill:blue; }
 
 .x.axis path {  display: none; }
 .legend{
-    margin-bottom:76px;
+    margin-top:5px;
     display:inline-block;
     border-collapse: collapse;
     border-spacing: 0px;
@@ -35,15 +35,16 @@ rect:hover {  fill:blue; }
     width:50px;
 }
 
+
 </style>
 <body>
     <form id="surprise_fm" action="surprise/" method="post">{% csrf_token %}
-        <input type="text" value="" id="from_time"/>
-        <input type="text" value="" id="to_time"/>
+        <input type="text" value="" id="from_time" class="intime"/>
+        <input type="text" value="" id="to_time" class="intime"/>
         <input id="surprise_btn" type="submit">
     </form>
 
-<div id='dashboard'>
+<div id='dashboard' >
 </div>
     <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
     <script src="{{ STATIC_URL }}js/jquery-1.12.0.min.js"></script>
@@ -52,22 +53,21 @@ rect:hover {  fill:blue; }
     <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
-
-    $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d',});
-    $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d',});
+    $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
+    $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
 function dashboard(id, fData){
     var barColor = 'steelblue';
     function segColor(c){ return {Swa:"#44487e", Gia:"#ff8e11", Dra:"#1135a9", Car:"#ff1111", Bay:"#275bc1" ,Tig:"#eeee11"}[c]; }
 
     // compute total for each state.
-    fData.forEach(function(d){d.total=d.freq.Swa+d.freq.Gia+d.freq.Dra+d.freq.Car+d.freq.Bay+d.freq.Tig;});
+    fData.forEach(function(d){d.total=d.freq.Car+d.freq.Gia+d.freq.Dra+d.freq.Tig+d.freq.Bay+d.freq.Swa;});
 
     // function to handle histogram.
     function histoGram(fD){
         var hG={},    hGDim = {t: 60, r: 0, b: 30, l: 0};
-        hGDim.w = 500 - hGDim.l - hGDim.r,
-        hGDim.h = 300 - hGDim.t - hGDim.b;
+        hGDim.w = 800
+        hGDim.h = 300
 
         //create svg for histogram.
         var hGsvg = d3.select(id).append("svg")
@@ -248,9 +248,9 @@ function dashboard(id, fData){
     // calculate total frequency by state for all segment.
     var sF = fData.map(function(d){return [d.State,d.total];});
 
-    var hG = histoGram(sF), // create the histogram.
-        pC = pieChart(tF), // create the pie-chart.
-        leg= legend(tF);  // create the legend.
+    var pC = pieChart(tF), // create the pie-chart.
+        leg= legend(tF),  // create the legend.
+        hG = histoGram(sF); // create the histogram.
 }
 </script>
 
@@ -258,7 +258,7 @@ function dashboard(id, fData){
 
 
 var freqData=[{State:'2/1',freq:{Dra:4786, Swa:1319, Gia:249,Tig:5431, Car:313, Bay:454}}
-,{State:'2/2',freq:{Dra:1101, Swa:412, Gia:674,Tig:4531, Car:1319, Bay:249}}
+,{State:'2/2',freq:{Swa:412, Gia:674, Dra:1101, Car:1319, Bay:249, Tig:4531}}
 ,{State:'2/3',freq:{Dra:932, Swa:2149, Gia:418,Tig:234, Car:223, Bay:3452}}
 ,{State:'2/4',freq:{Dra:832, Swa:1152, Gia:1862,Tig:4786, Car:1319, Bay:2222}}
 ,{State:'2/6',freq:{Dra:4481, Swa:3304, Gia:948,Tig:123, Car:432, Bay:49}}
@@ -269,9 +269,11 @@ var freqData=[{State:'2/1',freq:{Dra:4786, Swa:1319, Gia:249,Tig:5431, Car:313, 
 ,{State:'2/11',freq:{Dra:162, Swa:379, Gia:471,Tig:1200, Car:345, Bay:249}}
 ];
 
+            dashboard('#dashboard',freqData);
 
-
+/*
 $(document).ready(function(){
+
 $.ajax({
          'url':'surprise/',
          'type':'POST',
@@ -282,12 +284,12 @@ $.ajax({
                  freqData = response
              },
             'complete': function(jqXHR, statusText){
-            dashboard('#dashboard',freqData);
+
             },
         });
         return false;
 });
-
+*/
 
 </script>
 
