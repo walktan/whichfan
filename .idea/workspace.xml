@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64b18d19-aeb9-40da-b072-54550382d164" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wfan/cms/migrations/0002_twibay_twicar_twidra_twigia_twiswa_twitig.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/cms/models.py" afterPath="$PROJECT_DIR$/wfan/cms/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/cms/urls.py" afterPath="$PROJECT_DIR$/wfan/cms/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/cms/views.py" afterPath="$PROJECT_DIR$/wfan/cms/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/templates/cms/index.html" afterPath="$PROJECT_DIR$/wfan/templates/cms/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/wfan/settings.py" afterPath="$PROJECT_DIR$/wfan/wfan/settings.py" />
     </list>
     <ignored path="whichfan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -520,7 +515,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455457862516</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="20160218 input time">
+      <created>1455798327758</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1455798327758</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -573,7 +574,8 @@
     <MESSAGE value="20160212 show graph" />
     <MESSAGE value="20160213 show graph" />
     <MESSAGE value="20160214 input time" />
-    <option name="LAST_COMMIT_MESSAGE" value="20160214 input time" />
+    <MESSAGE value="20160218 input time" />
+    <option name="LAST_COMMIT_MESSAGE" value="20160218 input time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

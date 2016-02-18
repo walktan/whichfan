@@ -187,7 +187,7 @@ def tweet_search(search_word,max_id,oath_key_dict):
         "q": search_word,
         "lang": "ja",
         "result_type": "recent",
-        "count": "5",
+        "count": "100",
         "max_id": max_id
         }
     oath = create_oath_session(oath_key_dict)
