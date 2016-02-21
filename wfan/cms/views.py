@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from cms.models import twitDra,twitSwa,twitGia,twitTig,twitCar,twitBay
 from cms.models import twiDra,twiSwa,twiGia,twiTig,twiCar,twiBay
 from requests_oauthlib import OAuth1Session
-import json
+import json,string
 from datetime import datetime,timedelta
 from django.db.models import Max,Min
 from django.shortcuts import render
@@ -14,7 +14,7 @@ from django.core import serializers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from collections import OrderedDict
-#import datetime
+import datetime
 
 ### Constants
 oath_key_dict = {
@@ -25,7 +25,7 @@ oath_key_dict = {
 }
 
 def index(request):
-    #newinsert()
+    newinsert()
     return render(request, 'cms/index.html',)
 
 def get_json(req):
@@ -71,7 +71,7 @@ def for_hourly(req):    # AJAXに答える関数
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'State':from_time.strftime('%m/%d %H:%M'),'freq':sort_countall})
+            link_time.append({'State':from_time.strftime('%-m/%-d %-H:%M'),'freq':sort_countall})
             from_time += timedelta(hours=1)
 
         print(json.dumps(link_time))
@@ -113,7 +113,7 @@ def for_dayly(req):    # AJAXに答える関数
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'State':from_time.strftime('%m/%d'),'freq':sort_countall})
+            link_time.append({'State':from_time.strftime('%-m/%-d') + string.whitespace + string.whitespace,'freq':sort_countall})
             print(from_time)
             from_time += timedelta(days=1)
 

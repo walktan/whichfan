@@ -11,7 +11,10 @@ body{
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
 rect:hover {  fill:#0c8346; }
-.axis {  font: 10px sans-serif; }
+.axis {  font: 0.5em sans-serif;
+         -ms-writing-mode: tb-rl; /* for MS IE8+ */
+         -webkit-writing-mode: vertical-rl;
+         writing-mode: vertical-rl;}
 .legend tr{    border-bottom:1px solid grey; }
 .legend tr:first-child{    border-top:1px solid grey;}
 .axis path,
@@ -45,6 +48,8 @@ rect:hover {  fill:#0c8346; }
     }
     .histogram{
     margin-top:0px;
+    font-size:0.8em;
+    color:#555;
     }
 
     #loading{
@@ -192,6 +197,10 @@ input[type="radio"]:checked + label {
     clear:both
     }
 
+    #dashbord g .x axis {
+    height: 45px;
+    }
+
 </style>
 
 <div id = 'header' >
@@ -240,6 +249,7 @@ input[type="radio"]:checked + label {
     <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
+    setTimeout("location.reload()",1000*40);
     $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
     $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
@@ -252,7 +262,7 @@ function dashboard(id, fData){
 
     // function to handle histogram.
     function histoGram(fD){
-        var hG={},    hGDim = {t: 20, r: 0, b: 30, l: 0};
+        var hG={},    hGDim = {t: 40, r: 0, b: 200, l: 0};
         hGDim.w = 900
         hGDim.h = 320
 
@@ -268,8 +278,8 @@ function dashboard(id, fData){
 
         // Add x-axis to the histogram svg.
         hGsvg.append("g").attr("class", "x axis")
-            .attr("transform", "translate(0," + hGDim.h + ")")
-            .call(d3.svg.axis().scale(x).orient("bottom"));
+            .attr("transform", "translate(0,346)")
+            .call(d3.svg.axis().scale(x).orient("bottom").tickSize(0,0)).attr("verticalAlign","top");
 
         // Create function for y-axis map.
         var y = d3.scale.linear().range([hGDim.h, 0])
