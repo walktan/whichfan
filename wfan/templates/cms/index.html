@@ -11,7 +11,7 @@ body{
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
 rect:hover {  fill:#0c8346; }
-.axis {  font: 0.5em sans-serif;
+.axis {  font: 0.75em sans-serif;
          -ms-writing-mode: tb-rl; /* for MS IE8+ */
          -webkit-writing-mode: vertical-rl;
          writing-mode: vertical-rl;}
@@ -53,15 +53,8 @@ rect:hover {  fill:#0c8346; }
     }
 
     #loading{
-    border:1px dashed #999;
-    padding:15px;
-    position: fixed;
-    top:50%;
-    left:50%;
-    background-color:#FFF;
-    filter: alpha(opacity=85);
-    -moz-opacity:0.85;
-    opacity:0.85;
+    margin-left: 300px;
+    margin-top: 200px;
 }
 
 #loading .loadingMsg{
@@ -240,6 +233,8 @@ input[type="radio"]:checked + label {
     </form>
 </div>
 
+<div id = "watch_term"></div>
+
 <div id='dashboard' >
 </div>
     <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
@@ -249,7 +244,6 @@ input[type="radio"]:checked + label {
     <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
-    setTimeout("location.reload()",1000*40);
     $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
     $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
@@ -309,6 +303,10 @@ function dashboard(id, fData){
             // filter for selected state.
             var st = fData.filter(function(s){ return s.State == d[0];})[0],
                 nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
+
+
+            target = document.getElementById("watch_term");
+            target.innerHTML = st.State;
 
             // call update functions of pie-chart and legend.
             pC.update(nD);

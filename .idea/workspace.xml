@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.888889">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.72064054">
+              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25092936">
-              <caret line="251" column="41" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="41" />
+            <state vertical-scroll-proportion="69.45098">
+              <caret line="308" column="39" selection-start-line="308" selection-start-column="39" selection-end-line="308" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -142,8 +142,8 @@
         <option value="$PROJECT_DIR$/wfan/wfan/settings.py" />
         <option value="$PROJECT_DIR$/wfan/cms/models.py" />
         <option value="$PROJECT_DIR$/wfan/cms/urls.py" />
-        <option value="$PROJECT_DIR$/wfan/cms/views.py" />
         <option value="$PROJECT_DIR$/wfan/templates/cms/index.html" />
+        <option value="$PROJECT_DIR$/wfan/cms/views.py" />
       </list>
     </option>
   </component>
@@ -579,7 +579,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456065591667</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="20160221 input time">
+      <created>1456073605790</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1456073605790</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1024,18 +1030,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
+    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.888889">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="69.45098">
+          <caret line="308" column="39" selection-start-line="308" selection-start-column="39" selection-end-line="308" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
+    <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25092936">
-          <caret line="251" column="41" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.72064054">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
           <folding />
         </state>
       </provider>
