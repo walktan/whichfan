@@ -14,7 +14,7 @@ from django.core import serializers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from collections import OrderedDict
-import datetime
+#import datetime
 
 ### Constants
 oath_key_dict = {
@@ -25,7 +25,7 @@ oath_key_dict = {
 }
 
 def index(request):
-    newinsert()
+    #newinsert()
     return render(request, 'cms/index.html',)
 
 def get_json(req):
