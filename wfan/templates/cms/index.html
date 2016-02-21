@@ -108,11 +108,11 @@ input[type="radio"]:checked + label {
 
 <div id='dashboard' >
 </div>
-    <link href="../../static/css/jquery.datetimepicker.css" rel="stylesheet" >
-    <script src="../../static/js/jquery-1.12.0.min.js"></script>
-    <script src="../../static/js/jquery-ui.min.js"></script>
-    <script src="../../static/js/d3.min.js"></script>
-    <script src="../../static/js/build/jquery.datetimepicker.full.min.js"></script>
+    <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
+    <script src="{{ STATIC_URL }}js/jquery-1.12.0.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+    <script src="{{ STATIC_URL }}js/d3.min.js"></script>
+    <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
     $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
