@@ -10,7 +10,7 @@ body{
 
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
-rect:hover {  fill:blue; }
+rect:hover {  fill:#0c8346; }
 .axis {  font: 10px sans-serif; }
 .legend tr{    border-bottom:1px solid grey; }
 .legend tr:first-child{    border-top:1px solid grey;}
@@ -23,12 +23,12 @@ rect:hover {  fill:blue; }
 
 .x.axis path {  display: none; }
 .legend{
-    margin-top:24px;
-    margin-right:5px;
+    float:left;
+    margin-top:36px;
+    margin-left:10px;
     display:inline-block;
     border-collapse: collapse;
     border-spacing: 0px;
-    float:right;
 }
 .legend td{
     padding:4px 5px;
@@ -39,12 +39,12 @@ rect:hover {  fill:blue; }
     width:50px;
 }
         .piechart{
-        float:right;
-        margin-top:0px;
+        float:left;
+        margin-top:20px;
+        margin-left:200px;
     }
     .histogram{
     margin-top:0px;
-    clear: both;
     }
 
     #loading{
@@ -75,12 +75,12 @@ rect:hover {  fill:blue; }
 }
 /* チェックされた時のスタイル */
 input[type="radio"]:checked + label {
-  background: #0063A4;
+  background: #0c8346;
   color: #FFF;
 }
 /* マウスオーバーしたときのスタイル */
 .label:hover {
-  background-color: #E2EDF9;
+  background-color: #69b792;
 }
 /* lableのスタイル */
 .label {
@@ -122,7 +122,7 @@ input[type="radio"]:checked + label {
     border: 1px solid #999;
     }
     input[type="text"]:focus {
-    border: 1px solid #0063A4;
+    border: 1px solid #0c8346;
     outline: 0;
     }
 
@@ -148,7 +148,7 @@ input[type="radio"]:checked + label {
     }
 
     #select {
-    margin-top:10px;
+    margin-top:24px;
     }
 
     #date_button {
@@ -167,8 +167,8 @@ input[type="radio"]:checked + label {
     }
 
     #switch_f {
-    clear:both;
-    margin-left:0px;
+    float:right;
+    margin-top:16px;
     }
 
     .label {
@@ -181,8 +181,15 @@ input[type="radio"]:checked + label {
     margin-left:5px;
     }
 
+    #border{
+    clear:both;
+    height: 1px;
+    border: none;
+    border-top: 1px #555 solid;
+    }
+
     #dashboard {
-    margin-top:30px;
+    clear:both
     }
 
 </style>
@@ -220,6 +227,7 @@ input[type="radio"]:checked + label {
             </li>
           </ul>
         </div>
+        <div id = 'border'></div>
     </form>
 </div>
 
@@ -236,7 +244,7 @@ input[type="radio"]:checked + label {
     $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
 function dashboard(id, fData){
-    var barColor = 'steelblue';
+    var barColor = '#5da67f';
     function segColor(c){ return {Swallows:"#44487e", Giants:"#ff8e11", Dragons:"#1135a9", Carp:"#ff1111", Baystars:"#275bc1" ,Tiggers:"#eeee11"}[c]; }
 
     // compute total for each state.
@@ -427,8 +435,8 @@ function dashboard(id, fData){
     // calculate total frequency by state for all segment.
     var sF = fData.map(function(d){return [d.State,d.total];});
 
-    var leg= legend(tF),  // create the legend.
-        pC = pieChart(tF), // create the pie-chart.
+    var pC = pieChart(tF), // create the pie-chart.
+        leg= legend(tF),  // create the legend.
         hG = histoGram(sF); // create the histogram.
 }
 </script>
@@ -437,9 +445,15 @@ function dashboard(id, fData){
 
 
 var freqData=[];
+var ajaxSending = false;
 
 function go_ajax(){
-$.ajax({
+try{
+   if(!ajaxSending){
+   ajaxSending = true;
+   $('#dashboard').empty();
+   dispLoading("Loading...");
+   $.ajax({
          'url':$('form#surprise_fm').attr('action'),
          'type':'POST',
          'data':{
@@ -454,17 +468,21 @@ $.ajax({
                  freqData = response
              },
          'complete': function(jqXHR, statusText){
+            ajaxSending = false;
             removeLoading();
             dashboard('#dashboard',freqData);
             },
          });
          return false;
+   }else{
+   }
+}catch(e){
+  ajaxSending = false;
+}
 }
 
 
 $(document).ready(function(){
-
-dispLoading("Loading...")
 go_ajax();
 });
 
@@ -479,15 +497,11 @@ $(document).ready(function(){
 
 
    $('#surprise_fm').submit(function() {  // ボタンクリックでAJAX
-      $('#dashboard').empty();
-      dispLoading("Loading...")
       go_ajax()
       return false;
     });
 
     $( 'input[name="frequency"]:radio' ).change( function() {
-      $('#dashboard').empty();
-      dispLoading("Loading...")
       go_ajax()
       return false;
     });
