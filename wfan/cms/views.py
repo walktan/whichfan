@@ -14,7 +14,7 @@ from django.core import serializers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from collections import OrderedDict
-import datetime
+#import datetime
 
 ### Constants
 oath_key_dict = {
@@ -25,7 +25,7 @@ oath_key_dict = {
 }
 
 def index(request):
-    newinsert()
+    #newinsert()
     return render(request, 'cms/index.html',)
 
 def get_json(req):
@@ -69,7 +69,7 @@ def for_hourly(req):    # AJAXに答える関数
             countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
-            countall = (('Swa',countSwa),('Gia',countGia),('Dra',countDra),('Car',countCar),('Bay',countBay),('Tig',countTig))
+            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
             sort_countall = OrderedDict(countall)
             link_time.append({'State':from_time.strftime('%m/%d %H:%M'),'freq':sort_countall})
             from_time += timedelta(hours=1)
@@ -111,7 +111,7 @@ def for_dayly(req):    # AJAXに答える関数
             countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
-            countall = (('Swa',countSwa),('Gia',countGia),('Dra',countDra),('Car',countCar),('Bay',countBay),('Tig',countTig))
+            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
             sort_countall = OrderedDict(countall)
             link_time.append({'State':from_time.strftime('%m/%d'),'freq':sort_countall})
             print(from_time)
