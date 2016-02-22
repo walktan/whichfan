@@ -3,7 +3,7 @@
 <style>
 body{
     width: 900px;
-    margin:50px auto;
+    margin:40px auto;
     font-family:'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif !important;
     color:#555;
 }
@@ -82,7 +82,7 @@ input[type="radio"]:checked + label {
 }
 /* lableのスタイル */
 .label {
-  color: #000;
+    color:#555;
   border: #dddddd solid 2px;
   display: block;
   height: 45px;
@@ -244,8 +244,6 @@ input[type="radio"]:checked + label {
     <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
-
-    setTimeout("location.reload()",1000*40);
 
     $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
     $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
