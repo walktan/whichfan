@@ -244,6 +244,9 @@ input[type="radio"]:checked + label {
     <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 
     <script>
+
+    setTimeout("location.reload()",1000*40);
+
     $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
     $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 

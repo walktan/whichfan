@@ -14,7 +14,7 @@ from django.core import serializers
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from collections import OrderedDict
-#import datetime
+import datetime
 
 ### Constants
 oath_key_dict = {
@@ -25,7 +25,7 @@ oath_key_dict = {
 }
 
 def index(request):
-    #newinsert()
+    newinsert()
     return render(request, 'cms/index.html',)
 
 def get_json(req):
@@ -159,17 +159,17 @@ def insert():
 
 def newinsert():
     id_Dra = twiDra.objects.aggregate(max=Min('twit_id'))
-    tweetsDra = tweet_search('ドラゴンズ -rt -bot since:2016-02-12',id_Dra["max"], oath_key_dict)
+    tweetsDra = tweet_search('中日ドラゴンズ -rt -bot since:2016-02-12',id_Dra["max"], oath_key_dict)
     id_Swa = twiSwa.objects.aggregate(max=Min('twit_id'))
-    tweetsSwa = tweet_search('スワローズ -rt -bot since:2016-02-12',id_Swa["max"], oath_key_dict)
+    tweetsSwa = tweet_search('ヤクルトスワローズ -rt -bot since:2016-02-12',id_Swa["max"], oath_key_dict)
     id_Gia = twiGia.objects.aggregate(max=Min('twit_id'))
-    tweetsGia = tweet_search('ジャイアンツ -rt -bot since:2016-02-12',id_Gia["max"], oath_key_dict)
+    tweetsGia = tweet_search('読売ジャイアンツ -rt -bot since:2016-02-12',id_Gia["max"], oath_key_dict)
     id_Tig = twiTig.objects.aggregate(max=Min('twit_id'))
-    tweetsTig = tweet_search('タイガース -rt -bot since:2016-02-12',id_Tig["max"], oath_key_dict)
+    tweetsTig = tweet_search('阪神タイガース -rt -bot since:2016-02-12',id_Tig["max"], oath_key_dict)
     id_Car = twiCar.objects.aggregate(max=Min('twit_id'))
-    tweetsCar = tweet_search('カープ -rt -bot since:2016-02-12',id_Car["max"], oath_key_dict)
+    tweetsCar = tweet_search('広島カープ -rt -bot since:2016-02-12',id_Car["max"], oath_key_dict)
     id_Bay = twiBay.objects.aggregate(max=Min('twit_id'))
-    tweetsBay = tweet_search('ベイスターズ -rt -bot since:2016-02-12',id_Bay["max"], oath_key_dict)
+    tweetsBay = tweet_search('横浜ベイスターズ -rt -bot since:2016-02-12',id_Bay["max"], oath_key_dict)
     for tweet in tweetsDra["statuses"]:
         twit_at = change_ja_time(tweet[u'created_at'])
         p = twiDra(twit_id=tweet[u'id_str'],twit=tweet[u'text'],twit_at=twit_at).save()
