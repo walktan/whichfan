@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64b18d19-aeb9-40da-b072-54550382d164" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wfan/static/css/cms.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wfan/static/js/cms.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/cms/views.py" afterPath="$PROJECT_DIR$/wfan/cms/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/templates/cms/index.html" afterPath="$PROJECT_DIR$/wfan/templates/cms/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/wfan/wsgi.py" afterPath="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
     </list>
     <ignored path="whichfan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -707,7 +702,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456183963571</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="20160223 use virtualenv">
+      <created>1456207181034</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1456207181034</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
