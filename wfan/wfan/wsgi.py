@@ -20,7 +20,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wfan.settings")
 
 # virtualenvの実行コードのパス
-#exec(compile(open('/home/ec2-user/env001/bin/activate_this.py').read(), '/home/ec2-user/env001/bin/activate_this.py', 'exec'))
+exec(compile(open('/home/ec2-user/env001/bin/activate_this.py').read(), '/home/ec2-user/env001/bin/activate_this.py', 'exec'))
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
