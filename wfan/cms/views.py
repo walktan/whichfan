@@ -14,12 +14,12 @@ def index(request):
 #graph描画用jsonの取得
 def get_json(req):
     try:
-        if req.POST['frequency'] == 'dayly':
-            response = for_dayly(req)
+        if req.POST['frequency'] == 'daily':
+            response = for_daily(req)
         else:
             response = for_hourly(req)
     except KeyError:
-        response = for_dayly(req)
+        response = for_daily(req)
     return HttpResponse(response,content_type="text/javascript")
 
 #hourly用jsonの取得
@@ -45,9 +45,9 @@ def for_hourly(req):
             countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
-            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
+            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('BayStars',countBay),('Tigers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'State':from_time.strftime('%-m/%-d %-H:%M'),'freq':sort_countall})
+            link_time.append({'Team':from_time.strftime('%-m/%-d %-H:%M'),'twicnt':sort_countall})
             from_time += timedelta(hours=1)
 
         response = json.dumps(link_time)
@@ -55,8 +55,8 @@ def for_hourly(req):
     else:
         raise Http404
 
-#dayly用jsonの取得
-def for_dayly(req):
+#daily用jsonの取得
+def for_daily(req):
     if req.method == 'POST':
         try:
             get_from_time = req.POST['fromTime']
@@ -78,9 +78,9 @@ def for_dayly(req):
             countTig = twitTig.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countCar = twitCar.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
-            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
+            countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('BayStars',countBay),('Tigers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'State':from_time.strftime('%-m/%-d') + string.whitespace,'freq':sort_countall})
+            link_time.append({'Team':from_time.strftime('%-m/%-d') + string.whitespace,'twicnt':sort_countall})
             from_time += timedelta(days=1)
 
         response = json.dumps(link_time)
