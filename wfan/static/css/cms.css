@@ -46,7 +46,7 @@ rect:hover {
 .legend {
    float:right;
    width: 100px;
-   margin-top:16px;
+   margin-top:32px;
    margin-right:320px;
    display:inline-block;
    border-collapse: collapse;
@@ -65,62 +65,69 @@ rect:hover {
 
 .piechart {
    float:right;
-   margin-top:0px;
+   margin-top:12px;
    margin-right:20px;
    }
 
-.stTerm {
-   float:left;
-   margin-top:8px;
-   margin-left:0px;
-   font-size:1.0em;
-   }
- .vec {
-   float:left;
-   margin-top:8px;
-   margin-left:8px;
-   font-size:1.0em;
-   }
-  .enTerm {
-   float:left;
-   margin-top:8px;
-   margin-left:9px;
-   font-size:1.0em;
-   }
-  .team {
+.enTerm {
    clear:both;
-   float:left;
-   margin-top:8px;
-   margin-left:0px;
+   float:right;
    font-size:1.0em;
+   height:20px;
+   width:120px;
+   text-align:left;
+   margin-right:420px;
    }
 
-.histogram{
+.vec {
+   float:right;
+   font-size:1.0em;
+   height:20px;
+   width:40px;
+   text-align:center;
+   }
+
+.stTerm {
+   float:right;
+   font-size:1.0em;
+   height:20px;
+   width:120px;
+   text-align:right;
+   }
+
+.team {
+   float:left;
+   margin-left:0px;
+   font-size:1.2em;
+   border-bottom: 1px solid;
+   padding-bottom: 0px;
+   }
+
+.histogram {
    clear:both;
    margin-top:0px;
    font-size:0.8em;
    color:#555;
    }
 
-    #loading{
-    margin-left: 300px;
-    margin-top: 200px;
-}
+ #loading {
+   margin-left: 300px;
+   margin-top: 200px;
+   }
 
-#loading .loadingMsg{
-    text-align:center;
-    border:none;
-    padding:100px;
-    width:100px;
-    background-image:url("../../static/image/gif-load.gif");
-    background-position: center top;
-    background-repeat: no-repeat;
-}
+#loading .loadingMsg {
+   text-align:center;
+   border:none;
+   padding:100px;
+   width:100px;
+   background-image:url("../image/gif-load.gif");
+   background-position: center top;
+   background-repeat: no-repeat;
+   }
 
-
-    input[type=radio] {
-  display: none;
-}
+input[type=radio] {
+   display: none;
+   }
 /* チェックされた時のスタイル */
 input[type="radio"]:checked + label {
   background: #0c8346;
@@ -142,104 +149,111 @@ input[type="radio"]:checked + label {
   cursor: pointer;
 }
 
-    ul {
-    float: left;
-    list-style: none;
-    padding:0px;
-    margin-top:5px;
-    }
+ul {
+   float: left;
+   list-style: none;
+   padding:0px;
+   margin-top:5px;
+   }
 
-    li {
-    float: left;
-    list-style: none;
-    padding:0px;
-    margin:0px;
-    }
+li {
+   float: left;
+   list-style: none;
+   padding:0px;
+   margin:0px;
+   }
 
-    .input_time {
-    border:0;
-    padding:10px;
-    font-size:1.0em;
-    font-family:Arial, sans-serif;
-    color:#777;
-    border:solid 1px #ccc;
-    margin:0 0 10px;
-    width:160px;
-    }
-    input[type="text"] {
-    border: 1px solid #999;
-    }
-    input[type="text"]:focus {
-    border: 1px solid #0c8346;
-    outline: 0;
-    }
+.inputTime {
+   border:0;
+   padding:10px;
+   font-size:1.0em;
+   font-family:Arial, sans-serif;
+   color:#777;
+   border:solid 1px #ccc;
+   margin:0 0 10px;
+   width:160px;
+   }
 
-    #header {
-    margin-top:0px;
-    font-size:1.0em;
-    }
+input[type="text"] {
+   border: 1px solid #999;
+   }
 
-    #input_from_date{
-    font-size:1.0em;
-    float:left;
-    width:160px;
-    }
-    #input_to_date{
-    font-size:1.0em;
-    float:left;
-    width:160px;
-    margin-left:40px;
-    }
+input[type="text"]:focus {
+   border: 1px solid #0c8346;
+   outline: 0;
+   }
 
-    #input_date{
-    margin-top: 20px;
-    }
+#header {
+   margin-top:0px;
+   font-size:1.0em;
+   }
 
-    #select {
-    margin-top:24px;
-    }
+#inputFromDate{
+   font-size:1.0em;
+   float:left;
+   width:160px;
+   }
 
-    #date_button {
-    float:left;
-    margin-top:25px;
-    margin-left:40px;
-    width:100px;
-    }
+#inputToDate{
+   font-size:1.0em;
+   float:left;
+   width:160px;
+   margin-left:40px;
+   }
 
-    #date_btn {
-	background: #EEE;
-	border: 1px solid #999;
-	color: #111;
-	width: 100px;
-	padding: 10px 0;
-    }
+#inputDate{
+   margin-top: 20px;
+   }
 
-    #switch_f {
-    float:right;
-    margin-top:16px;
-    }
+#select {
+   margin-top:24px;
+   }
 
-    .label {
-    margin-left:00px;
-    width: 100px;
-    text-Align:center;
-    }
+#dateButton {
+   float:left;
+   margin-top:25px;
+   margin-left:40px;
+   width:100px;
+}
 
-    #hourly_label {
-    margin-left:5px;
-    }
+#dateBtn {
+   background: #EEE;
+   border: 1px solid #999;
+   color: #111;
+   width: 100px;
+   padding: 10px 0;
+   }
 
-    #border{
-    clear:both;
-    height: 1px;
-    border: none;
-    border-top: 1px #555 solid;
-    }
+#switchF {
+   float:right;
+   margin-top:16px;
+   }
 
-#dashboard {
+.label {
+   margin-left:00px;
+  width: 100px;
+  text-Align:center;
+  }
+
+#hourlyLabel {
+   margin-left:5px;
+   }
+
+#border {
+   clear:both;
+   height: 1px;
+   border: none;
+   border-top: 1px #555 solid;
+   }
+
+#graph {
    clear:both;
    }
 
 #dashbord g .x axis {
    height: 45px;
+   }
+
+#alertMsg {
+   color:red;
    }

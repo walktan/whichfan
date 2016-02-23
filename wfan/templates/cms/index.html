@@ -6,31 +6,33 @@
 </div>
 
 <div id = 'select'>
-    <form id="surprise_fm" action="surprise/" method="post">{% csrf_token %}
+    <form id="termFm" action="changeTerm/" method="post">{% csrf_token %}
 
-        <div id = "input_from_date">
+        <div id = "alertMsg"></div>
+        
+        <div id = "inputFromDate">
         <label>From date</label>
-            <input type="text" value="" id="from_time" class="input_time"/>
+            <input type="text" value="" id="fromTime" class="inputTime"/>
         </div>
 
-        <div id = "input_to_date">
+        <div id = "inputToDate">
         <label >To date</label>
-            <input type="text" value="" id="to_time" class="input_time"/>
+            <input type="text" value="" id="toTime" class="inputTime"/>
         </div>
 
-        <div id = "date_button">
-        <input id="date_btn" type="submit" value="期間変更">
+        <div id = "dateButton">
+        <input id="dateBtn" type="submit" value="期間変更">
         </div>
 
-        <div id = "switch_f">
+        <div id = "switchF">
           <ul>
             <li>
               <input type="radio" name="frequency" value="dayly" id="dayly" checked/>
-                <label for="dayly" class="label" id = "dayly_label">Dayly</label>
+                <label for="dayly" class="label" id = "daylyLabel">Dayly</label>
             </li>
             <li>
               <input type="radio" name="frequency" value="hourly" id="hourly" />
-                <label for="hourly" class="label" id = "hourly_label">Hourly</label>
+                <label for="hourly" class="label" id = "hourlyLabel">Hourly</label>
             </li>
           </ul>
         </div>
@@ -38,7 +40,7 @@
     </form>
 </div>
 
-<div id='dashboard' ></div>
+<div id='graph' ></div>
 
 <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
 <link href="{{ STATIC_URL }}css/cms.css" rel="stylesheet" >

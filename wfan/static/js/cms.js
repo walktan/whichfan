@@ -1,8 +1,47 @@
+$(document).ready(function(){
 
-    $('#from_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
-    $('#to_time').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
+//時間入力窓の入力補助設定
+$('#fromTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
+$('#toTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
-function dashboard(id, fData){
+//グラフ描画
+drawGraph();
+
+   //期間変更ボタン押下時処理
+   $('#termFm').submit(function() {
+      if(checkInput()){
+      drawGraph()
+      }
+      return false;
+    });
+
+   //daily,hourly切り替え時処理
+    $( 'input[name="frequency"]:radio' ).change( function() {
+      if(checkInput()){
+      drawGraph()
+      }
+      return false;
+    });
+
+    //入力値チェック
+    function checkInput(){
+       target = document.getElementById("alertMsg")
+       if($('#fromTime').val() == "" || $('#toTime').val() == ""){
+       target.innerHTML = "期間を設定してください";
+       return false
+    }else if($('#fromTime').val() > $('#toTime').val()){
+       target.innerHTML = "期間に誤りがあります";
+       return false
+    }else{
+       target.innerHTML = "";
+    return true
+    }
+    }
+
+});
+
+//graph全体の描画
+function graph(id, fData){
     var barColor = '#5da67f';
     function segColor(c){ return {Swallows:"#44487e", Giants:"#ff8e11", Dragons:"#1135a9", Carp:"#ff1111", Baystars:"#275bc1" ,Tiggers:"#eeee11"}[c]; }
 
@@ -62,8 +101,8 @@ function dashboard(id, fData){
             // call update functions of pie-chart and legend.
             pC.update(nD);
             leg.update(nD);
-            stTerm.text(st.State);
-            vec.text('');
+            stTerm.text('');
+            vec.text(st.State);
             enTerm.text('');
 
         }
@@ -140,7 +179,7 @@ function dashboard(id, fData){
             // call the update function of histogram with all data.
             hG.update(fData.map(function(v){
                 return [v.State,v.total];}), barColor);
-            team.text('');
+            team.text('All');
         }
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
@@ -206,43 +245,45 @@ function dashboard(id, fData){
     // calculate total frequency by state for all segment.
     var sF = fData.map(function(d){return [d.State,d.total];});
 
-    var stTerm = d3.select(id).append("text").text(sF[0][0]).attr('class','stTerm');
-        vec = d3.select(id).append("text").text('>>').attr('class','vec');
-        enTerm = d3.select(id).append("text").text(sF[sF.length - 1][0]).attr('class','enTerm');
-        team = d3.select(id).append("text").text("").attr('class','team');
-        leg= legend(tF),  // create the legend.
+    var leg= legend(tF),  // create the legend.
         pC = pieChart(tF), // create the pie-chart.
+        enTerm = d3.select(id).append("text").text(sF[sF.length - 1][0]).attr('class','enTerm');
+        vec = d3.select(id).append("text").text('>>').attr('class','vec');
+        stTerm = d3.select(id).append("text").text(sF[0][0]).attr('class','stTerm');
+        team = d3.select(id).append("text").text("All").attr('class','team');
         hG = histoGram(sF); // create the histogram.
-}
+        }
 
-
+//グラフ描画用のjson
 var freqData=[];
+
+//ajax実行中flag（ajax連続実行防止のため）
 var ajaxSending = false;
 
-function go_ajax(){
+//グラフ描画用json取得
+function drawGraph(){
 try{
    if(!ajaxSending){
    ajaxSending = true;
-   $('#dashboard').empty();
+   $('#graph').empty();
    dispLoading("Loading...");
    $.ajax({
-         'url':$('form#surprise_fm').attr('action'),
+         'url':$('form#termFm').attr('action'),
          'type':'POST',
          'data':{
-            'from_time':$('#from_time').val(),
-            'to_time':$('#to_time').val(),
+            'fromTime':$('#fromTime').val(),
+            'toTime':$('#toTime').val(),
             'frequency':$("input[name='frequency']:checked").val(),
           },
          'dataType':'json',
-         'success':function(response){  // 通信が成功したら動く処理で、引数には返ってきたレスポンスが入る
+         'success':function(response){
             freqData = response
-                 console.log('SUCCESS!さいしょ');
                  freqData = response
              },
          'complete': function(jqXHR, statusText){
             ajaxSending = false;
             removeLoading();
-            dashboard('#dashboard',freqData);
+            graph('#graph',freqData);
             },
          });
          return false;
@@ -252,30 +293,6 @@ try{
   ajaxSending = false;
 }
 }
-
-
-$(document).ready(function(){
-go_ajax();
-});
-
-
-console.log("ページ読み込んだんちゃう？")
-$(document).ready(function(){
-   console.log("jsはじまったんちゃう？")
-
-
-
-   $('#surprise_fm').submit(function() {  // ボタンクリックでAJAX
-      go_ajax()
-      return false;
-    });
-
-    $( 'input[name="frequency"]:radio' ).change( function() {
-      go_ajax()
-      return false;
-    });
-
-});
 
 function dispLoading(msg){
     // 画面表示メッセージ
@@ -314,15 +331,12 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
         return cookieValue;
     }
     function sameOrigin(url) {
-        // url could be relative or scheme relative or absolute
-        var host = document.location.host; // host + port
+        var host = document.location.host;
         var protocol = document.location.protocol;
         var sr_origin = '//' + host;
         var origin = protocol + sr_origin;
-        // Allow absolute or scheme relative URLs to same origin
         return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
             (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-            // or any other URL that isn't scheme relative or absolute i.e relative.
             !(/^(\/\/|http:|https:).*/.test(url));
     }
     function safeMethod(method) {
