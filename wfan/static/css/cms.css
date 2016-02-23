@@ -1,0 +1,245 @@
+body {
+   width: 900px;
+   margin:40px auto;
+   font-family:'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif !important;
+   color:#555;
+   }
+
+path {
+   stroke: #fff;
+   }
+
+path:hover {
+   opacity:0.9;
+   }
+
+rect:hover {
+   fill:#0c8346;
+   }
+
+.axis {
+   font: 0.75em sans-serif;
+   -ms-writing-mode: tb-rl;
+   -webkit-writing-mode: vertical-rl;
+   writing-mode: vertical-rl;
+   }
+
+.legend tr {
+   border-bottom:1px solid grey;
+   }
+
+.legend tr:first-child{
+   border-top:1px solid grey;
+   }
+
+.axis path,
+.axis line {
+   fill: none;
+   stroke: #000;
+   shape-rendering: crispEdges;
+   }
+
+.x.axis path {
+   display: none;
+   }
+
+.legend {
+   float:right;
+   width: 100px;
+   margin-top:16px;
+   margin-right:320px;
+   display:inline-block;
+   border-collapse: collapse;
+   border-spacing: 0px;
+   }
+
+.legend td {
+   padding:4px 5px;
+   vertical-align:bottom;
+   }
+
+.legendFreq, .legendPerc {
+   align:right;
+   width:50px;
+   }
+
+.piechart {
+   float:right;
+   margin-top:0px;
+   margin-right:20px;
+   }
+
+.stTerm {
+   float:left;
+   margin-top:8px;
+   margin-left:0px;
+   font-size:1.0em;
+   }
+ .vec {
+   float:left;
+   margin-top:8px;
+   margin-left:8px;
+   font-size:1.0em;
+   }
+  .enTerm {
+   float:left;
+   margin-top:8px;
+   margin-left:9px;
+   font-size:1.0em;
+   }
+  .team {
+   clear:both;
+   float:left;
+   margin-top:8px;
+   margin-left:0px;
+   font-size:1.0em;
+   }
+
+.histogram{
+   clear:both;
+   margin-top:0px;
+   font-size:0.8em;
+   color:#555;
+   }
+
+    #loading{
+    margin-left: 300px;
+    margin-top: 200px;
+}
+
+#loading .loadingMsg{
+    text-align:center;
+    border:none;
+    padding:100px;
+    width:100px;
+    background-image:url("../../static/image/gif-load.gif");
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+
+    input[type=radio] {
+  display: none;
+}
+/* チェックされた時のスタイル */
+input[type="radio"]:checked + label {
+  background: #0c8346;
+  color: #FFF;
+}
+/* マウスオーバーしたときのスタイル */
+.label:hover {
+  background-color: #69b792;
+}
+/* lableのスタイル */
+.label {
+    color:#555;
+  border: #dddddd solid 2px;
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+    ul {
+    float: left;
+    list-style: none;
+    padding:0px;
+    margin-top:5px;
+    }
+
+    li {
+    float: left;
+    list-style: none;
+    padding:0px;
+    margin:0px;
+    }
+
+    .input_time {
+    border:0;
+    padding:10px;
+    font-size:1.0em;
+    font-family:Arial, sans-serif;
+    color:#777;
+    border:solid 1px #ccc;
+    margin:0 0 10px;
+    width:160px;
+    }
+    input[type="text"] {
+    border: 1px solid #999;
+    }
+    input[type="text"]:focus {
+    border: 1px solid #0c8346;
+    outline: 0;
+    }
+
+    #header {
+    margin-top:0px;
+    font-size:1.0em;
+    }
+
+    #input_from_date{
+    font-size:1.0em;
+    float:left;
+    width:160px;
+    }
+    #input_to_date{
+    font-size:1.0em;
+    float:left;
+    width:160px;
+    margin-left:40px;
+    }
+
+    #input_date{
+    margin-top: 20px;
+    }
+
+    #select {
+    margin-top:24px;
+    }
+
+    #date_button {
+    float:left;
+    margin-top:25px;
+    margin-left:40px;
+    width:100px;
+    }
+
+    #date_btn {
+	background: #EEE;
+	border: 1px solid #999;
+	color: #111;
+	width: 100px;
+	padding: 10px 0;
+    }
+
+    #switch_f {
+    float:right;
+    margin-top:16px;
+    }
+
+    .label {
+    margin-left:00px;
+    width: 100px;
+    text-Align:center;
+    }
+
+    #hourly_label {
+    margin-left:5px;
+    }
+
+    #border{
+    clear:both;
+    height: 1px;
+    border: none;
+    border-top: 1px #555 solid;
+    }
+
+#dashboard {
+   clear:both;
+   }
+
+#dashbord g .x axis {
+   height: 45px;
+   }

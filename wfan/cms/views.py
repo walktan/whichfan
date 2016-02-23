@@ -84,7 +84,7 @@ def for_dayly(req):    # AJAXに答える関数
             to_time = datetime.strptime(get_to_time, '%Y/%m/%d %H:%M').replace(hour=0, minute=0, second=0, microsecond=0)
         except (KeyError,ValueError):
             print ("KeyError?")
-            from_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=11)
+            from_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=6)
             to_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
         print(from_time)
@@ -103,7 +103,7 @@ def for_dayly(req):    # AJAXに答える関数
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('Baystars',countBay),('Tiggers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'State':from_time.strftime('%-m/%-d') + string.whitespace + string.whitespace,'freq':sort_countall})
+            link_time.append({'State':from_time.strftime('%-m/%-d') + string.whitespace,'freq':sort_countall})
             print(from_time)
             from_time += timedelta(days=1)
 
