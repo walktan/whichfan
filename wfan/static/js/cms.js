@@ -255,7 +255,7 @@ function drawGraph(){
   try{
      if(!ajaxSending){
      ajaxSending = true;
-     $(":radio").prop("disabled",true); //ラジオボタン無効化
+     $("input[name='frequency']").prop("disabled",true); //ラジオボタン無効化
      $('#graph').empty();
      dispLoading("Loading...");
      $.ajax({
@@ -273,7 +273,7 @@ function drawGraph(){
                },
            'complete': function(jqXHR, statusText){
               ajaxSending = false;
-              $(":radio").prop("disabled",false); //ラジオボタン有効化
+              $("input[name='frequency']").prop("disabled",false); //ラジオボタン有効化
               removeLoading();
               graph('#graph',twicntData);
               },
@@ -283,7 +283,7 @@ function drawGraph(){
      }
   }catch(e){
     ajaxSending = false;
-    $(":radio").prop("disabled",false); //ラジオボタン有効化
+    $("input[name='frequency']").prop("disabled",false); //ラジオボタン有効化
   }
 }
 

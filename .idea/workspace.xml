@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64b18d19-aeb9-40da-b072-54550382d164" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/static/css/cms.css" afterPath="$PROJECT_DIR$/wfan/static/css/cms.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/wfan/wsgi.py" afterPath="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/static/js/cms.js" afterPath="$PROJECT_DIR$/wfan/static/js/cms.js" />
     </list>
     <ignored path="whichfan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,8 +54,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.291666">
-              <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+            <state vertical-scroll-proportion="-14.375">
+              <caret line="43" column="49" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -102,20 +101,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cms.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wfan/static/js/cms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="344" column="3" selection-start-line="344" selection-start-column="3" selection-end-line="344" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.7966102">
+              <caret line="285" column="32" selection-start-line="285" selection-start-column="32" selection-end-line="285" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cms.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/static/css/cms.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4920071">
+            <state vertical-scroll-proportion="-10.259259">
               <caret line="215" column="16" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="16" />
               <folding />
             </state>
@@ -151,9 +150,9 @@
         <option value="$PROJECT_DIR$/wfan/cms/views.py" />
         <option value="$PROJECT_DIR$/wfan/cms/models.py" />
         <option value="$PROJECT_DIR$/wfan/templates/cms/index.html" />
-        <option value="$PROJECT_DIR$/wfan/static/js/cms.js" />
         <option value="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
         <option value="$PROJECT_DIR$/wfan/static/css/cms.css" />
+        <option value="$PROJECT_DIR$/wfan/static/js/cms.js" />
       </list>
     </option>
   </component>
@@ -739,7 +738,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456330076661</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="20160224 add comment">
+      <created>1456330971297</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1456330971298</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1186,22 +1191,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.291666">
-          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/static/js/cms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="344" column="3" selection-start-line="344" selection-start-column="3" selection-end-line="344" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wfan/wfan/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.222222">
@@ -1212,8 +1201,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wfan/static/css/cms.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4920071">
+        <state vertical-scroll-proportion="-10.259259">
           <caret line="215" column="16" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375">
+          <caret line="43" column="49" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/static/js/cms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7966102">
+          <caret line="285" column="32" selection-start-line="285" selection-start-column="32" selection-end-line="285" selection-end-column="32" />
           <folding />
         </state>
       </provider>
