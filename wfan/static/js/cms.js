@@ -1,45 +1,46 @@
+
+//初期処理
 $(document).ready(function(){
+  // 時間入力窓の入力補助設定
+  $('#fromTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
+  $('#toTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
 
-// 時間入力窓の入力補助設定
-$('#fromTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+0d'}).attr('readonly','readonly');
-$('#toTime').datetimepicker({minDate:new Date(2016, 2 - 1, 4),maxDate: '+1d'}).attr('readonly','readonly');
+  // グラフ描画
+  drawGraph();
 
-// グラフ描画
-drawGraph();
-
-   // 期間変更ボタン押下時処理
-   $('#termFm').submit(function() {
+  // 期間変更ボタン押下時処理
+  $('#termFm').submit(function() {
       if(checkInput()){
       drawGraph()
       }
       return false;
-    });
+  });
 
-   // daily,hourly切り替え時処理
-    $( 'input[name="frequency"]:radio' ).change( function() {
-      if(checkInput()){
-      drawGraph()
-      }
-      return false;
-    });
-
-    // 入力値チェック
-    //両方ブランクの場合はデフォルト表示にするのでOKとする
-    function checkInput(){
-       target = document.getElementById("alertMsg")
-       if((($('#fromTime').val() == "") && ($('#toTime').val() != "")) || (($('#fromTime').val() != "") && ($('#toTime').val() == ""))){
-       target.innerHTML = "期間を設定してください";
-       return false
-    }else if($('#fromTime').val() > $('#toTime').val()){
-       target.innerHTML = "期間に誤りがあります";
-       return false
-    }else{
-       target.innerHTML = "";
-    return true
+  // daily,hourly切り替え時処理
+  $( 'input[name="frequency"]:radio' ).change( function() {
+    if(checkInput()){
+    drawGraph()
     }
-    }
+    return false;
+  });
 
+  // 入力値チェック
+  //両方ブランクの場合はデフォルト表示にするのでOKとする
+  function checkInput(){
+     target = document.getElementById("alertMsg")
+     if((($('#fromTime').val() == "") && ($('#toTime').val() != "")) || (($('#fromTime').val() != "") && ($('#toTime').val() == ""))){
+     target.innerHTML = "期間を設定してください";
+     return false
+  }else if($('#fromTime').val() > $('#toTime').val()){
+     target.innerHTML = "期間に誤りがあります";
+     return false
+  }else{
+     target.innerHTML = "";
+  return true
+  }
+  }
 });
+
 
 // graph全体の描画
 function graph(id, fData){
@@ -201,7 +202,7 @@ function graph(id, fData){
 
         tr.append("td").text(function(d){ return d.type;});
 
-        tr.append("td").attr("class",'legendFreq')
+        tr.append("td").attr("class",'legendTwicnt')
             .text(function(d){ return d3.format(",")(d.twicnt);});
 
         tr.append("td").attr("class",'legendPerc')
@@ -211,7 +212,7 @@ function graph(id, fData){
         leg.update = function(nD){
             var l = legend.select("tbody").selectAll("tr").data(nD);
 
-            l.select(".legendtwicnt").text(function(d){ return d3.format(",")(d.twicnt);});
+            l.select(".legendTwicnt").text(function(d){ return d3.format(",")(d.twicnt);});
 
             l.select(".legendPerc").text(function(d){ return getLegend(d,nD);});
         }
@@ -242,6 +243,7 @@ function graph(id, fData){
         hG = histoGram(sF); //棒グラフ
         }
 
+
 //グラフ描画用のjson
 var twicntData=[];
 
@@ -250,40 +252,44 @@ var ajaxSending = false;
 
 //グラフ描画用json取得
 function drawGraph(){
-try{
-   if(!ajaxSending){
-   ajaxSending = true;
-   $('#graph').empty();
-   dispLoading("Loading...");
-   $.ajax({
-         'url':$('form#termFm').attr('action'),
-         'type':'POST',
-         'data':{
-            'fromTime':$('#fromTime').val(),
-            'toTime':$('#toTime').val(),
-            'frequency':$("input[name='frequency']:checked").val(),
-          },
-         'dataType':'json',
-         'success':function(response){
-            twicntData = response
-                 twicntData = response
-             },
-         'complete': function(jqXHR, statusText){
-            ajaxSending = false;
-            removeLoading();
-            graph('#graph',twicntData);
+  try{
+     if(!ajaxSending){
+     ajaxSending = true;
+     $(":radio").prop("disabled",true); //ラジオボタン無効化
+     $('#graph').empty();
+     dispLoading("Loading...");
+     $.ajax({
+           'url':$('form#termFm').attr('action'),
+           'type':'POST',
+           'data':{
+              'fromTime':$('#fromTime').val(),
+              'toTime':$('#toTime').val(),
+              'frequency':$("input[name='frequency']:checked").val(),
             },
-         });
-         return false;
-   }else{
-   }
-}catch(e){
-  ajaxSending = false;
-}
+           'dataType':'json',
+           'success':function(response){
+              twicntData = response
+                   twicntData = response
+               },
+           'complete': function(jqXHR, statusText){
+              ajaxSending = false;
+              $(":radio").prop("disabled",false); //ラジオボタン有効化
+              removeLoading();
+              graph('#graph',twicntData);
+              },
+           });
+           return false;
+     }else{
+     }
+  }catch(e){
+    ajaxSending = false;
+    $(":radio").prop("disabled",false); //ラジオボタン有効化
+  }
 }
 
+
 //Loadingイメージの表示
-function dispLoading(msg){
+  function dispLoading(msg){
     // 画面表示メッセージ
     var dispMsg = "";
 
@@ -297,10 +303,12 @@ function dispLoading(msg){
     }
 }
 
+
 // Loadingイメージ削除関数
 function removeLoading(){
 	$("#loading").remove();
 }
+
 
 //CSRF対策
 jQuery(document).ajaxSend(function(event, xhr, settings) {

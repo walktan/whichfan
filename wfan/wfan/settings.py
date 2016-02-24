@@ -58,6 +58,8 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'wfan.urls'
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

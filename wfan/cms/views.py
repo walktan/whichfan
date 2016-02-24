@@ -13,18 +13,20 @@ def index(request):
 
 #graph描画用jsonの取得
 def get_json(req):
-    try:
-        if req.POST['frequency'] == 'daily':
+    if req.method == 'POST':
+        try:
+            if req.POST['frequency'] == 'daily':
+                response = for_daily(req)
+            else:
+                response = for_hourly(req)
+        except KeyError:
             response = for_daily(req)
-        else:
-            response = for_hourly(req)
-    except KeyError:
-        response = for_daily(req)
-    return HttpResponse(response,content_type="text/javascript")
+        return HttpResponse(response,content_type="text/javascript")
+    else:
+        raise Http404
 
 #hourly用jsonの取得
 def for_hourly(req):
-    if req.method == 'POST':
         try:
             get_from_time = req.POST['fromTime']
             get_to_time = req.POST['toTime']
@@ -52,12 +54,10 @@ def for_hourly(req):
 
         response = json.dumps(link_time)
         return HttpResponse(response,content_type="text/javascript")
-    else:
-        raise Http404
+
 
 #daily用jsonの取得
 def for_daily(req):
-    if req.method == 'POST':
         try:
             get_from_time = req.POST['fromTime']
             get_to_time = req.POST['toTime']
@@ -85,5 +85,3 @@ def for_daily(req):
 
         response = json.dumps(link_time)
         return HttpResponse(response,content_type="text/javascript")
-    else:
-        raise Http404

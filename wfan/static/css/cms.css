@@ -58,7 +58,7 @@ rect:hover {
    vertical-align:bottom;
    }
 
-.legendFreq, .legendPerc {
+.legendTwicnt, .legendPerc {
    align:right;
    width:50px;
    text-align:right;
