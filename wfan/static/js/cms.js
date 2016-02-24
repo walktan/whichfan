@@ -1,4 +1,3 @@
-
 //初期処理
 $(document).ready(function(){
   // 時間入力窓の入力補助設定
@@ -25,7 +24,7 @@ $(document).ready(function(){
   });
 
   // 入力値チェック
-  //両方ブランクの場合はデフォルト表示にするのでOKとする
+  // 両方ブランクの場合はデフォルト表示にするのでOKとする
   function checkInput(){
      target = document.getElementById("alertMsg")
      if((($('#fromTime').val() == "") && ($('#toTime').val() != "")) || (($('#fromTime').val() != "") && ($('#toTime').val() == ""))){
