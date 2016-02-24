@@ -243,13 +243,13 @@ function graph(id, fData){
         }
 
 
-//グラフ描画用のjson
+// グラフ描画用のjson
 var twicntData=[];
 
-//ajax実行中flag（ajax連続実行防止のため）
+// ajax実行中flag（ajax連続実行防止のため）
 var ajaxSending = false;
 
-//グラフ描画用json取得
+// グラフ描画用json取得
 function drawGraph(){
   try{
      if(!ajaxSending){
