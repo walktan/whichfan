@@ -165,7 +165,6 @@ li {
    }
 
 .inputTime {
-   border:0;
    padding:10px;
    font-size:1.0em;
    font-family:Arial, sans-serif;
@@ -173,6 +172,7 @@ li {
    border:solid 1px #ccc;
    margin:0 0 10px;
    width:160px;
+   height:20px;
    }
 
 input[type="text"] {
@@ -212,7 +212,7 @@ input[type="text"]:focus {
 
 #dateButton {
    float:left;
-   margin-top:25px;
+   margin-top:24px;
    margin-left:40px;
    width:100px;
 }
@@ -222,6 +222,7 @@ input[type="text"]:focus {
    border: 1px solid #999;
    color: #111;
    width: 100px;
+   height:42px;
    padding: 10px 0;
    }
 
