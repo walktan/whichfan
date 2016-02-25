@@ -49,7 +49,7 @@ def for_hourly(req):
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
             countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('BayStars',countBay),('Tigers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'Team':from_time.strftime('%-m/%-d %-H:%M'),'twicnt':sort_countall})
+            link_time.append({'twiDate':from_time.strftime('%-m/%-d %-H:%M'),'twicnt':sort_countall})
             from_time += timedelta(hours=1)
 
         response = json.dumps(link_time)
@@ -80,7 +80,7 @@ def for_daily(req):
             countBay = twitBay.objects.filter(twit_at__range=(from_time, from_time + timedelta(days=1))).count()
             countall = (('Swallows',countSwa),('Giants',countGia),('Dragons',countDra),('Carp',countCar),('BayStars',countBay),('Tigers',countTig))
             sort_countall = OrderedDict(countall)
-            link_time.append({'Team':from_time.strftime('%-m/%-d') + string.whitespace,'twicnt':sort_countall})
+            link_time.append({'twiDate':from_time.strftime('%-m/%-d') + string.whitespace,'twicnt':sort_countall})
             from_time += timedelta(days=1)
 
         response = json.dumps(link_time)

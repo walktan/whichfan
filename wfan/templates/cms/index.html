@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<head>
+<title>tweet数比較</title>
 <meta charset="utf-8">
 <link href="{{ STATIC_URL }}css/jquery.datetimepicker.css" rel="stylesheet" >
 <link href="{{ STATIC_URL }}css/cms.css" rel="stylesheet" >
@@ -7,10 +9,12 @@
 <script src="{{ STATIC_URL }}js/d3.min.js"></script>
 <script src="{{ STATIC_URL }}js/build/jquery.datetimepicker.full.min.js"></script>
 <script src="{{ STATIC_URL }}js/cms.js"></script>
+</head>
+<body>
 
 <div id = 'header' >
 <!-タイトル->
-<h1>tweet数比較</h1>
+<h1 class="title">tweet数比較<h2 class="title" id = "sub">-セ6球団に関するtweet数を可視化-</h2></h1>
 </div>
 
 <!-期間選択枠->
@@ -56,3 +60,6 @@
 </div>
 <!-グラフ描画->
 <div id='graph' ></div>
+
+</body>
+</html>

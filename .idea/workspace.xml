@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64b18d19-aeb9-40da-b072-54550382d164" name="Default" comment="20160224 add comment">
+    <list default="true" id="64b18d19-aeb9-40da-b072-54550382d164" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/cms/views.py" afterPath="$PROJECT_DIR$/wfan/cms/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/static/css/cms.css" afterPath="$PROJECT_DIR$/wfan/static/css/cms.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/static/js/cms.js" afterPath="$PROJECT_DIR$/wfan/static/js/cms.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/templates/cms/index.html" afterPath="$PROJECT_DIR$/wfan/templates/cms/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wfan/wfan/wsgi.py" afterPath="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
     </list>
     <ignored path="whichfan.iws" />
@@ -25,6 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.148148">
+              <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wfan/cms/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.2222223">
+              <caret line="5" column="21" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="jquery.datetimepicker.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/static/css/jquery.datetimepicker.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -35,28 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gif-load.gif" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wfan/static/image/gif-load.gif">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery-ui.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wfan/static/css/jquery-ui.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.375">
-              <caret line="43" column="49" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="49" />
+            <state vertical-scroll-proportion="-5.27451">
+              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -65,8 +73,8 @@
       <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/wfan/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.888889">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+            <state vertical-scroll-proportion="-12.222222">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -102,21 +110,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cms.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wfan/static/js/cms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38135594">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state vertical-scroll-proportion="-30.814816">
+              <caret line="164" column="34" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cms.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wfan/static/css/cms.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.259259">
-              <caret line="215" column="16" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="16" />
+            <state vertical-scroll-proportion="1.1989343">
+              <caret line="247" column="4" selection-start-line="247" selection-start-column="4" selection-end-line="247" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -148,12 +156,12 @@
         <option value="$PROJECT_DIR$/wfan/cms/urls.py" />
         <option value="$PROJECT_DIR$/wfan/cms/management/commands/insert.py" />
         <option value="$PROJECT_DIR$/wfan/wfan/settings.py" />
-        <option value="$PROJECT_DIR$/wfan/cms/views.py" />
         <option value="$PROJECT_DIR$/wfan/cms/models.py" />
+        <option value="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
+        <option value="$PROJECT_DIR$/wfan/cms/views.py" />
+        <option value="$PROJECT_DIR$/wfan/static/js/cms.js" />
         <option value="$PROJECT_DIR$/wfan/templates/cms/index.html" />
         <option value="$PROJECT_DIR$/wfan/static/css/cms.css" />
-        <option value="$PROJECT_DIR$/wfan/wfan/wsgi.py" />
-        <option value="$PROJECT_DIR$/wfan/static/js/cms.js" />
       </list>
     </option>
   </component>
@@ -212,24 +220,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="whichfan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wfan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whichfan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whichfan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wfan" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -751,7 +741,19 @@
       <option name="project" value="LOCAL" />
       <updated>1456331337070</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="20160224 add comment">
+      <created>1456332985185</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1456332985185</updated>
+    </task>
+    <task id="LOCAL-00038" summary="20160224 add comment">
+      <created>1456333706714</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1456333706714</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView">
@@ -850,7 +852,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -916,7 +918,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -982,7 +984,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1093,16 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2222223">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wfan/cms/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.2222223">
@@ -1143,16 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/cms/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wfan/static/css/jquery-ui.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1161,25 +1143,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/static/css/jquery.datetimepicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wfan/static/image/gif-load.gif">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/wfan/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.111111">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wfan/wfan/__init__.py">
@@ -1190,19 +1156,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/static/css/cms.css">
+    <entry file="file://$PROJECT_DIR$/wfan/cms/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.259259">
-          <caret line="215" column="16" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.375">
-          <caret line="43" column="49" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="49" />
-          <folding />
+        <state vertical-scroll-proportion="-7.148148">
+          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1216,16 +1176,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wfan/wfan/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.888889">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state vertical-scroll-proportion="-12.222222">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/wfan/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.111111">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/cms/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2222223">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/templates/cms/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.27451">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/static/css/jquery.datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wfan/static/js/cms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38135594">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state vertical-scroll-proportion="-30.814816">
+          <caret line="164" column="34" selection-start-line="164" selection-start-column="30" selection-end-line="164" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wfan/static/css/cms.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1989343">
+          <caret line="247" column="4" selection-start-line="247" selection-start-column="4" selection-end-line="247" selection-end-column="4" />
           <folding />
         </state>
       </provider>

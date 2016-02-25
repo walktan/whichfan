@@ -5,6 +5,7 @@ body {
    color:#555;
    }
 
+/*d3関連*/
 path {
    stroke: #fff;
    }
@@ -70,6 +71,14 @@ rect:hover {
    margin-right:20px;
    }
 
+.histogram {
+   clear:both;
+   margin-top:0px;
+   font-size:0.8em;
+   color:#555;
+   }
+
+/*補助メッセージ関連*/
 .enTerm {
    clear:both;
    float:right;
@@ -96,7 +105,7 @@ rect:hover {
    text-align:right;
    }
 
-.team {
+.twiDate {
    float:left;
    margin-left:0px;
    font-size:1.2em;
@@ -104,13 +113,7 @@ rect:hover {
    padding-bottom: 0px;
    }
 
-.histogram {
-   clear:both;
-   margin-top:0px;
-   font-size:0.8em;
-   color:#555;
-   }
-
+/*Loading関連*/
  #loading {
    margin-left: 300px;
    margin-top: 200px;
@@ -126,19 +129,20 @@ rect:hover {
    background-repeat: no-repeat;
    }
 
+/*ラジオボタン関連*/
 input[type=radio] {
    display: none;
    }
-/* チェックされた時のスタイル */
+
 input[type="radio"]:checked + label {
   background: #0c8346;
   color: #FFF;
 }
-/* マウスオーバーしたときのスタイル */
+
 .label:hover {
   background-color: #69b792;
 }
-/* lableのスタイル */
+
 .label {
     color:#555;
   border: #dddddd solid 2px;
@@ -164,6 +168,7 @@ li {
    margin:0px;
    }
 
+/*期間入力関連*/
 .inputTime {
    padding:10px;
    font-size:1.0em;
@@ -182,11 +187,6 @@ input[type="text"] {
 input[type="text"]:focus {
    border: 1px solid #0c8346;
    outline: 0;
-   }
-
-#header {
-   margin-top:0px;
-   font-size:1.0em;
    }
 
 #inputFromDate{
@@ -232,13 +232,19 @@ input[type="text"]:focus {
    }
 
 .label {
-   margin-left:00px;
+   margin-left:0px;
   width: 100px;
   text-Align:center;
   }
 
 #hourlyLabel {
    margin-left:5px;
+   }
+
+/*ヘッダ関連*/
+#header {
+   margin-top:0px;
+   font-size:1.0em;
    }
 
 #border {
@@ -258,4 +264,13 @@ input[type="text"]:focus {
 
 #alertMsg {
    color:red;
+   }
+
+.title {
+   display:inline;
+   }
+
+#sub {
+   font-size:0.75em;
+   margin-left:16px;
    }

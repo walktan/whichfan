@@ -64,7 +64,7 @@ function graph(id, fData){
             .attr("transform", "translate(" + hGDim.l + "," + hGDim.t + ")");
 
         // x-axisマッピング
-        var x = d3.scale.ordinal().rangeRoundBands([0, hGDim.w], 0.1)
+        var x = d3.scale.ordinal().rangeBands([0, hGDim.w], 0.1)
                 .domain(fD.map(function(d) { return d[0]; }));
 
         // x-axis作成
@@ -98,14 +98,14 @@ function graph(id, fData){
 
         // バーへのマウスオーバ時
         function mouseover(d){
-            var st = fData.filter(function(s){ return s.Team == d[0];})[0],
+            var st = fData.filter(function(s){ return s.twiDate == d[0];})[0],
                 nD = d3.keys(st.twicnt).map(function(s){ return {type:s, twicnt:st.twicnt[s]};});
 
             // 円グラフ、凡例、テキストの更新
             pC.update(nD);
             leg.update(nD);
             stTerm.text('');
-            vec.text(st.Team);
+            vec.text(st.twiDate);
             enTerm.text('');
 
         }
@@ -151,7 +151,7 @@ function graph(id, fData){
         // 円弧作成
         var arc = d3.svg.arc().outerRadius(pieDim.r - 10).innerRadius(0);
 
-        // Team毎のtwit数取得
+        // twiDate毎のtwit数取得
         var pie = d3.layout.pie().sort(null).value(function(d) { return d.twicnt; });
 
         // 円グラフ表示
@@ -168,15 +168,15 @@ function graph(id, fData){
         // 円グラフのマウスオーバ時処理
         function mouseover(d){
             hG.update(fData.map(function(v){
-                return [v.Team,v.twicnt[d.data.type]];}),segColor(d.data.type));
-            team.text(d.data.type);
+                return [v.twiDate,v.twicnt[d.data.type]];}),segColor(d.data.type));
+            twiDate.text(d.data.type);
         }
 
         // 円グラフのマウスオーバ時処理
         function mouseout(d){
             hG.update(fData.map(function(v){
-                return [v.Team,v.total];}), barColor);
-            team.text('All');
+                return [v.twiDate,v.total];}), barColor);
+            twiDate.text('All');
         }
         // 円グラフ変化アニメーションの設定
         function arcTween(a) {
@@ -224,13 +224,13 @@ function graph(id, fData){
     }
 
 
-    // 全Teamのサマリデータ取得
+    // 全twiDateのサマリデータ取得
     var tF = ['Swallows','Giants','Dragons','Carp','BayStars','Tigers'].map(function(d){
         return {type:d, twicnt: d3.sum(fData.map(function(t){ return t.twicnt[d];}))};
     });
 
-    // Team毎のサマリデータ取得
-    var sF = fData.map(function(d){return [d.Team,d.total];});
+    // twiDate毎のサマリデータ取得
+    var sF = fData.map(function(d){return [d.twiDate,d.total];});
 
     //表示用オブジェクト
     var leg= legend(tF); //凡例
@@ -238,15 +238,15 @@ function graph(id, fData){
         enTerm = d3.select(id).append("text").text(sF[sF.length - 1][0]).attr('class','enTerm'); //開始日_テキスト
         vec = d3.select(id).append("text").text('>>').attr('class','vec'); //ベクトル_テキスト
         stTerm = d3.select(id).append("text").text(sF[0][0]).attr('class','stTerm'); //終了日_テキスト
-        team = d3.select(id).append("text").text("All").attr('class','team'); //チーム名_テキスト
+        twiDate = d3.select(id).append("text").text("All").attr('class','twiDate'); //チーム名_テキスト
         hG = histoGram(sF); //棒グラフ
         }
 
 
-// グラフ描画用のjson
+//グラフ描画用のjson
 var twicntData=[];
 
-// ajax実行中flag（ajax連続実行防止のため）
+//ajax実行中flag（ajax連続実行防止のため）
 var ajaxSending = false;
 
 // グラフ描画用json取得
