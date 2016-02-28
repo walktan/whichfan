@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-import datetime, json
+import datetime, json,os
 from django.db.models import Max, Min
 from cms.models import twitDra, twitSwa, twitGia, twitTig, twitCar, twitBay
 from requests_oauthlib import OAuth1Session
@@ -9,10 +9,10 @@ from requests_oauthlib import OAuth1Session
 class Command(BaseCommand):
     # Twitter api接続情報
     oath_key_dict = {
-        "consumer_key": "hD5R5jSasiJ40oVenvN0NvnOh",
-        "consumer_secret": "LpnOvbof9Cd0UJBc1mgWd3yQnxwQIvBO90ftD78dPtednzMmHc",
-        "access_token": "182051631-UjzLI6mbNotb46qz7VJgmQAwign1K9q9GMwG6MVq",
-        "access_token_secret": "zdpxnKgL5wmq37ylDQDKbgwB5QX2IMsYTO4vklzjC2vsH"
+        "consumer_key": os.environ['CONSUMER_KEY'],
+        "consumer_secret": os.environ['CONSUMER_SECRET'],
+        "access_token": os.environ['ACCESS_TOKEN'],
+        "access_token_secret": os.environ['ACCESS_TOKEN_SECRET'],
     }
 
     def handle(self, *args, **options):
