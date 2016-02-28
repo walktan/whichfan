@@ -30,27 +30,27 @@ class Command(BaseCommand):
         tweetsBay = Command.tweet_search('横浜ベイスターズ -rt -bot', id_Bay["max"], self.oath_key_dict)
         for tweet in tweetsDra["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitDra(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitDra(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
 
         for tweet in tweetsSwa["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitSwa(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitSwa(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
 
         for tweet in tweetsGia["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitGia(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitGia(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
 
         for tweet in tweetsTig["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitTig(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitTig(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
 
         for tweet in tweetsCar["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitCar(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitCar(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
 
         for tweet in tweetsBay["statuses"]:
             twit_at = Command.change_ja_time(tweet[u'created_at'])
-            p = twitBay(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
+            twitBay(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at).save()
             return
 
     def create_oath_session(oath_key_dict):
