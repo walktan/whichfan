@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'wfan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'twit',
-        'USER': 'ebroot',
-        'PASSWORD': 'ebroot!!',
-        'HOST': 'whichfan.cawdnwke4hyc.ap-northeast-1.rds.amazonaws.com',
-        'PORT': '3306',
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
     }
 }
 
