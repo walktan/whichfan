@@ -6,7 +6,7 @@ class TeamMst(models.Model):
     team_id = models.DecimalField(max_digits=8, decimal_places=0)
     search_word = models.CharField(max_length=128)
 
-class TweetTable(models.Model):
+class TweetTbl(models.Model):
     team_name = models.ForeignKey(TeamMst)
     twit_id = models.DecimalField(max_digits=30, decimal_places=0)
     twit = models.CharField(max_length=300)

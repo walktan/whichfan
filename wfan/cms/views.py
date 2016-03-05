@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from cms.models import TeamMst,TweetTable
+from cms.models import TeamMst,TweetTbl
 from datetime import datetime,timedelta
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
@@ -44,7 +44,7 @@ def for_hourly(req):
         #tweet数取得
         for var in range(0,diff_time+1):
             for team in TeamMst.objects.values('team_name').order_by('team_id'):
-                countTweet = TweetTable.objects.filter(team_name_id=team['team_name'],twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
+                countTweet = TweetTbl.objects.filter(team_name_id=team['team_name'],twit_at__range=(from_time, from_time + timedelta(hours=1))).count()
                 countAll.append((team['team_name'], countTweet))
             sort_countall = OrderedDict(countAll)
             link_time.append({'twiDate':from_time.strftime('%-m/%-d %-H:%M'),'twicnt':sort_countall})
@@ -73,7 +73,7 @@ def for_daily(req):
         #tweet数取得
         for var in range(0,diff_time+1):
             for team in TeamMst.objects.values('team_name').order_by('team_id'):
-                countTweet = TweetTable.objects.filter(team_name_id=team['team_name'],twit_at__range=(from_time, from_time + timedelta(days=1))).count()
+                countTweet = TweetTbl.objects.filter(team_name_id=team['team_name'],twit_at__range=(from_time, from_time + timedelta(days=1))).count()
                 countAll.append((team['team_name'],countTweet))
             sort_countall = OrderedDict(countAll)
             link_time.append({'twiDate':from_time.strftime('%-m/%-d') + string.whitespace,'twicnt':sort_countall})

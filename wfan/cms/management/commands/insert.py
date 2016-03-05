@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import datetime, json,os
 from django.db.models import Max, Min
-from cms.models import TeamMst,TweetTable
+from cms.models import TeamMst,TweetTbl
 from requests_oauthlib import OAuth1Session
 
 #twitter apiを介してDBにツイートを取り込む
@@ -16,12 +16,12 @@ class Command(BaseCommand):
     }
 
     def handle(self, *args, **options):
-        max_id = TweetTable.objects.aggregate(max=Max('twit_id'))
+        max_id = TweetTbl.objects.aggregate(max=Max('twit_id'))
         for search in TeamMst.objects.values('team_name','search_word'):
             get_tweets = Command.tweet_search(search['search_word'] + ' -rt -bot', max_id["max"], self.oath_key_dict)
             for tweet in get_tweets["statuses"]:
                 twit_at = Command.change_ja_time(tweet[u'created_at'])
-                TweetTable(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at, team_name_id=search['team_name']).save()
+                TweetTbl(twit_id=tweet[u'id_str'], twit=tweet[u'text'], twit_at=twit_at, team_name_id=search['team_name']).save()
 
     def create_oath_session(oath_key_dict):
         oath = OAuth1Session(
